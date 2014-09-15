@@ -1,0 +1,26 @@
+﻿/*
+$Name:  $
+$Revision: 1.1 $
+$Source: /home/cvs/fact/Sql/_sqlinc/create_view.sqlinc,v $
+$Date: 2007/11/20 10:20:22 $
+
+Назначение:
+
+Пример вызова:
+*/
+set quoted_identifier on;
+
+if not exists (
+	select 1 from information_schema.views
+		where table_schema = N'$(_SCHEMA)' and table_name = N'$(_OBJECT)'
+)
+exec sp_executesql N'
+create view $(_SCHEMA).$(_OBJECT)
+as
+select 0 as [error];
+';
+go
+
+set quoted_identifier on;
+go
+

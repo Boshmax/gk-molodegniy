@@ -5,4 +5,6 @@ $call ../_schemas.bat
 $set _SCHEMA=%_DBO_SCHEMA%
 
 tDigit.sql
-
+tFloor.sql
+tHouse.sql
+tUser.sql

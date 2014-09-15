@@ -3,3 +3,27 @@
 
 $call ../_schemas.bat
 $set _SCHEMA=%_DBO_SCHEMA%
+
+fParseUserFlat.sql
+fStr2LineTable.sql
+fStr2TokenTable.sql
+
+
+
+
+
+
+
+pParseChessFloor.sql
+
+pChessFloorSM1.sql
+pChessFloorSM2.sql
+
+pListTenant.sql
+
+
+
+pChessFloorM1.sql
+pChessFloorM2.sql
+pChessFloorM3.sql
+

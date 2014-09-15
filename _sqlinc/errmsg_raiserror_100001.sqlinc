@@ -1,0 +1,3 @@
+﻿--{{ include $Source: /home/cvs/fact/Sql/_sqlinc/errmsg_raiserror_100001.sqlinc,v $ $Name:  $ $Revision: 1.1 $ $Date: 2008/06/03 20:17:11 $
+raiserror(100001, @__err_sev__, @__err_state__, @__err_msg__, @__err_num__) with log;
+--}} include $Source: /home/cvs/fact/Sql/_sqlinc/errmsg_raiserror_100001.sqlinc,v $ $Name:  $ $Revision: 1.1 $ $Date: 2008/06/03 20:17:11 $

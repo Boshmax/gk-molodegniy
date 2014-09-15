@@ -1,0 +1,22 @@
+﻿/*
+$Name:  $
+$Revision: 1.4 $
+$Source: /home/cvs/fact/Sql/_sqlinc/errmsg.sqlinc,v $
+$Date: 2007/10/26 08:07:14 $
+Название
+
+Назначение:
+*/
+
+--{{ include $Source: /home/cvs/fact/Sql/_sqlinc/errmsg.sqlinc,v $
+declare @err_num_ int, @err_sev_ int, @err_state_ int, @err_line_ int, @err_msg_ varchar(512), @err_proc_ varchar(255);
+
+set @err_num_ = ERROR_NUMBER();
+set @err_sev_ = ERROR_SEVERITY();
+set @err_state_ = ERROR_STATE();
+set @err_line_ = ERROR_LINE();
+set @err_msg_ = ERROR_MESSAGE();
+set @err_proc_ = ERROR_PROCEDURE();
+
+raiserror('%s [ErrNum: %d; Proc: %s; Line: %d]', @err_sev_, @err_state_, @err_msg_, @err_num_, @err_proc_, @err_line_);
+--}} include $Source: /home/cvs/fact/Sql/_sqlinc/errmsg.sqlinc,v $

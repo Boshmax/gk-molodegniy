@@ -1,24 +1,36 @@
-/****** Object:  Table [dbo].[tHouse]    Script Date: 09/15/2014 09:24:01 ******/
-SET ANSI_NULLS ON
-GO
+﻿/*
+$Date: 15.09.2014 13:02:13 $
+$Source: Git\gk-molodegniy\Init\tHouse.sql $
 
-SET QUOTED_IDENTIFIER ON
-GO
+Назначение:
 
-CREATE TABLE [dbo].[tHouse](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[house] [int] NULL,
-	[unit] [int] NULL,
-	[floors] [int] NULL,
-	[flatinfloor] [int] NULL
-) ON [PRIMARY]
+Пример вызова:
+*/
 
-GO
+set quoted_identifier on
+go
 
+if not exists (
+	select 1 from information_schema.tables
+		where table_schema = N'dbo' and table_name = N'tHouse'
+)
+	create table [dbo].[tHouse](
+		[id] [int] identity(1, 1) not null,
+		[house] [int] null,
+		[unit] [int] null,
+		[floors] [int] null,
+		[flatinfloor] [int] null
+	) on [primary]
 
-insert [tHouse](house, unit, floors,flatinfloor)
-select 1,	1,	20,	12
+go
+set quoted_identifier off
+go
+truncate table dbo.tHouse;
+go
+
+insert [tHouse](house, unit, floors, flatinfloor)
+select 1, 1, 20, 12
 union all
-select 2,	3,	25,	9
+select 2, 3, 25, 9
 union all
-select 3,	3,	25,	9
+select 3, 3, 25, 9

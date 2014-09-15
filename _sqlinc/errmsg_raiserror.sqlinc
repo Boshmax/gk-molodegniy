@@ -1,0 +1,3 @@
+﻿--{{ \_sqlinc\errmsg_raiserror.sqlinc
+raiserror(@__err_msg__, @__err_sev__, @__err_state__, @__err_msg__, @__err_num__) with log;
+--}} \_sqlinc\errmsg_raiserror.sqlinc

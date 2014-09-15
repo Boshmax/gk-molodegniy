@@ -1,0 +1,27 @@
+﻿/*
+$Name:  $
+$Revision: 1.1 $
+$Source: /home/cvs/fact/Sql/_sqlinc/create_func_tvf_multi.sqlinc,v $
+$Date: 2009/01/21 10:49:02 $
+
+Назначение:
+
+Пример вызова:
+*/
+
+if not exists (
+	select 1 from information_schema.routines 
+		where specific_schema = N'$(_SCHEMA)' and specific_name = N'$(_OBJECT)' and routine_type = 'function'
+)
+exec sp_executesql N'
+create function $(_SCHEMA).[$(_OBJECT)]()
+returns @ret table (n int)
+as
+begin
+return;
+end
+';
+go
+
+set quoted_identifier on
+go

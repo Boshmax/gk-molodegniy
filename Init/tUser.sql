@@ -1,39 +1,33 @@
-/****** Object:  Table [dbo].[tUser]    Script Date: 09/15/2014 09:24:31 ******/
-SET ANSI_NULLS ON
-GO
+﻿/*
+$Date: 15.09.2014 13:08:31 $
+$Source: Git\gk-molodegniy\Init\tUser.sql $
 
-SET QUOTED_IDENTIFIER ON
-GO
+Назначение:
 
-SET ANSI_PADDING ON
-GO
+Пример вызова:
+*/
+set quoted_identifier on
+go
 
-CREATE TABLE [dbo].[tUser](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[name] [varchar](50) NULL,
-	[userid] [int] NULL,
-	[houseid] [int] NULL,
-	[flatStr] [int] NULL,
-	[isDisable] [bit] NOT NULL,
-	[Nev] [nchar](10) NULL,
-	[Flat] [int] NULL,
-	[Fraction] [bit] NOT NULL,
-	[Apartment] [bit] NULL,
-	[NewFlat] [int] NULL
-) ON [PRIMARY]
+if not exists (
+	select 1 from information_schema.tables
+		where table_schema = N'dbo' and table_name = N'tUser'
+)
+create table [dbo].[tUser](
+	[id] [int] identity(1, 1) not null,
+	[name] [varchar](50) null,
+	[userid] [int] null,
+	[houseid] [int] null,
+	[flatStr] [int] null,
+	[isDisable] [bit] not null default ((0)),
+	[Nev] [nchar](10) null,
+	[Flat] [int] null,
+	[Fraction] [bit] not null  default ((0)) ,
+	[Apartment] [bit] not null default ((0)) ,
+	[NewFlat] [int] null
+) on [primary]
 
-GO
 
-SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE [dbo].[tUser] ADD  DEFAULT ((0)) FOR [isDisable]
-GO
-
-ALTER TABLE [dbo].[tUser] ADD  CONSTRAINT [DF_tUser_fraction]  DEFAULT ((0)) FOR [Fraction]
-GO
-
-ALTER TABLE [dbo].[tUser] ADD  DEFAULT ((0)) FOR [Apartment]
-GO
-
+set quoted_identifier off
+go
 

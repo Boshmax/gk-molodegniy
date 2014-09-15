@@ -1,0 +1,11 @@
+﻿; $Date: 2006/01/23 11:12:38 $
+; _server.bat
+
+$call _schemas.bat
+
+#include Init\_release.sqb
+
+#include Sql\_release.sqb
+
+
+

@@ -1,0 +1,27 @@
+﻿/*
+$Name:  $
+$Revision: 1.1 $
+$Source: /home/cvs/fact/Sql/_sqlinc/create_view_trigger.sqlinc,v $
+$Date: 2008/08/22 11:52:24 $
+
+Назначение:
+
+Пример вызова:
+*/
+set quoted_identifier on;
+
+if not exists (
+	select 1 from sys.triggers
+		where object_id = object_id(N'[$(_SCHEMA)].[$(_OBJECT)]')
+)
+exec sp_executesql N'
+create trigger [$(_SCHEMA)].[$(_OBJECT)]
+on [$(_SCHEMA)].[$(_TABLE)]
+instead of update
+as
+raiserror(''Trigger $(_SCHEMA).$(_OBJECT) on $(_TABLE) not implemented!'', 16, 1) with nowait;
+';
+go
+
+set quoted_identifier on
+go

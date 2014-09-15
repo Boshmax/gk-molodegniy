@@ -1,0 +1,38 @@
+﻿/*
+$Name:  $
+$Revision: 1.5 $
+$Date: 2007/11/20 10:20:08 $
+$Source: /home/cvs/fact/Sql/_sqlinc/auto_drop.sqlinc,v $
+
+Назначение:
+
+Пример вызова:
+*/
+
+declare @___drop_object_type_ varchar(2)
+
+select @___drop_object_type_ = [type] from sys.objects where [object_id] = object_id('$(_SCHEMA).$(_OBJECT)')
+	
+if @___drop_object_type_ in ('FN', 'IF', 'TF', 'FS') begin 
+	drop function $(_SCHEMA).$(_OBJECT);
+end
+else if @___drop_object_type_ = 'V' begin
+	drop view $(_SCHEMA).$(_OBJECT);
+end
+else if @___drop_object_type_ in ('P', 'PC') begin
+	drop procedure $(_SCHEMA).$(_OBJECT);
+end
+else if @___drop_object_type_ = 'U' begin 
+	drop table $(_SCHEMA).$(_OBJECT);
+end
+else if @___drop_object_type_ = 'SN' begin 
+	drop synonym $(_SCHEMA).$(_OBJECT);
+end
+else if @___drop_object_type_ = 'TR' begin 
+	drop trigger $(_SCHEMA).$(_OBJECT);
+end
+
+go
+
+
+

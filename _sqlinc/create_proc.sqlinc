@@ -1,0 +1,25 @@
+﻿/*
+$Name:  $
+$Revision: 1.4 $
+$Source: /home/cvs/fact/Sql/_sqlinc/create_proc.sqlinc,v $
+$Date: 2007/11/20 10:20:08 $
+
+Назначение:
+
+Пример вызова:
+*/
+
+if not exists (
+	select 1 from information_schema.routines 
+		where specific_schema = N'$(_SCHEMA)' and specific_name = N'$(_OBJECT)'
+)
+exec sp_executesql N'
+create procedure $(_SCHEMA).[$(_OBJECT)]
+as
+raiserror(''Procedure $(_SCHEMA).$(_OBJECT) not implemented!'', 16, 1) with nowait;
+';
+go
+
+set quoted_identifier on
+go
+

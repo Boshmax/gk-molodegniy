@@ -1,0 +1,3 @@
+﻿  -- права на исполнение процедур и функций для public
+  grant execute on $(_SCHEMA).$(_OBJECT) to public
+go

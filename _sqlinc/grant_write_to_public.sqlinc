@@ -1,0 +1,3 @@
+﻿  -- права только на редактирование данных таблиц и представлений для public
+  grant select, insert, update, delete on $(_SCHEMA).$(_OBJECT) to public
+go

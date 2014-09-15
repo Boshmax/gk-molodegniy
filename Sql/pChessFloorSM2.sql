@@ -1,18 +1,26 @@
-use molodej
-go
+п»ї:r ../_sqlinc/create_proc.sqlinc
+/*
+$Date: 15.09.2014 13:31:10 $
+$Source: Git\gk-molodegniy\Sql\pChessFloorSM2.sql $
 
-alter procedure pChessFloor2
+РќР°Р·РЅР°С‡РµРЅРёРµ:
+
+РџСЂРёРјРµСЂ РІС‹Р·РѕРІР°:
+*/
+
+
+alter procedure $(_SCHEMA).$(_OBJECT)
 	@nHouse int = 1
 ,	@nUnit int = 1
 as
 
 declare @nFloors_ int
-,	@nFlatInFloor_ int 
-,	@nStartFlat_ int = 0 
+,	@nFlatInFloor_ int
+,	@nStartFlat_ int = 0
 ,	@nUnitFlat_ int = 0
-,	@nRealFlatInFloor_ int 
+,	@nRealFlatInFloor_ int
 
-select @nStartFlat_ = isnull(SUM(flatinfloor),0) from tfloor where houseid = @nHouse and unit < @nUnit
+select @nStartFlat_ = isnull(sum(flatinfloor), 0) from tfloor where houseid = @nHouse and unit < @nUnit
 
 select @nFloors_ = Floors
 ,	@nFlatInFloor_ = FlatInFloor
@@ -30,8 +38,8 @@ declare @nFlatInFloorId_ int = 1
 print '
 [table layout=fixed width='+cast((@nFlatInFloor_ * 33+30) as varchar(30))+'px]
 [tr]
-[td width=30px bgcolor=#84A577][color=white]Этаж[/color][/td]
-[td colspan='+isnull(cast(@nFlatInFloor_ as varchar(20)),'')+' bgcolor=#84A577][align=center][color=white]Номер на площадке[/color][/align][/td]
+[td width=30px bgcolor=#84A577][color=white]Р­С‚Р°Р¶[/color][/td]
+[td colspan='+isnull(cast(@nFlatInFloor_ as varchar(20)),'')+' bgcolor=#84A577][align=center][color=white]РќРѕРјРµСЂ РЅР° РїР»РѕС‰Р°РґРєРµ[/color][/align][/td]
 [/tr]'
 print '[tr]'
 print '[td] # [/td]'
@@ -47,14 +55,14 @@ print '[/tr]'
 while @nFloorsId_ > 0
 begin
 	print '[tr]'
-	
-	select @nUnitFlat_ = isnull(SUM(flatinfloor),0) 
-	from tfloor 
+
+	select @nUnitFlat_ = isnull(sum(flatinfloor), 0)
+	from tfloor
 	where houseid = @nHouse and unit = @nUnit and floorNum < @nFloorsId_
 
 	select @nRealFlatInFloor_ =  flatinfloor
 	,	@szUrlMap_ = urlMap
-	from tfloor 
+	from tfloor
 	where houseid = @nHouse and Unit = @nUnit and floorNum = @nFloorsId_
 
 	set @nFlatInFloorId_ = 1
@@ -67,28 +75,28 @@ begin
 	begin
 		set @nFlatId_ = 0
 		select @nFlatId_ = @nStartFlat_	+ @nUnitFlat_ + @nFlatInFloorId_
-		
+
 		if @nFloorsId_ = 1
 			set @nFlatId_ = 0
 		if @nRealFlatInFloor_ >= @nFlatInFloorId_
 		begin
 			if exists(select * from tUser where flat = @nFlatId_ and Houseid = @nHouse and isDisable = 0)
 			begin
-				set @nUserId_ = 0 
+				set @nUserId_ = 0
 				set @szUser_ = ''
 				set @abbr_ = cast(@nFlatId_ as varchar(20))
 				while 1 = 1
-				begin 
-					SELECT top 1 @nUserId_ = Id FROM tUser WHERE Id > @nUserId_ and houseid = @nHouse and flat = @nFlatId_ and isDisable = 0 Order by Id
-					IF @@ROWCOUNT = 0
-						BREAK
-					
-					select @szUser_ = @szUser_ + 
-						case when userid IS not null 
-							then '[abbr="'+name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(userid as varchar(20))+']'+@abbr_+'[/url][/abbr] ' 
+				begin
+					select top 1 @nUserId_ = Id from tUser where Id > @nUserId_ and houseid = @nHouse and flat = @nFlatId_ and isDisable = 0 order by Id
+					if @@rowcount = 0
+						break
+
+					select @szUser_ = @szUser_ +
+						case when userid is not null
+							then '[abbr="'+name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(userid as varchar(20))+']'+@abbr_+'[/url][/abbr] '
 						else '[abbr="'+name+'"]'+@abbr_+'[/abbr] '
 						end
-					from tUser 
+					from tUser
 					where flat = @nFlatId_ and ID = @nUserId_ and houseid = @nHouse
 					set @abbr_ = ' *'
 				end
@@ -114,73 +122,75 @@ print '[/table]'
 
 
 go
-print '[b]Молодежный I[/b]'
+/*
+print '[b]РњРѕР»РѕРґРµР¶РЅС‹Р№ I[/b]'
 print ''
-exec pChessFloor2 1,1
+exec pChessFloor2 1, 1
 print ''
-print '[spoiler="Список жильцов"]'
+print '[spoiler="РЎРїРёСЃРѕРє Р¶РёР»СЊС†РѕРІ"]'
 declare @nchar varchar(8000)=''
-select @nchar = @nchar+name +' (№ '+ cast(flat as varchar(5))+')'+ char(13) 
+select @nchar = @nchar+name +' (в„– '+ cast(flat as varchar(5))+')'+ char(13)
 from tUser
 where houseid = 1 and isDisable = 0
 order by name
 print @nchar
 
 print '[/spoiler]'
-print 'Для добавления указываем Этаж, Квартиру'
+print 'Р”Р»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СѓРєР°Р·С‹РІР°РµРј Р­С‚Р°Р¶, РљРІР°СЂС‚РёСЂСѓ'
+*/
 /*
-print '[b]Молодежный II[/b]'
+print '[b]РњРѕР»РѕРґРµР¶РЅС‹Р№ II[/b]'
 print ''
-print '[b]Секция 1[/b]'
+print '[b]РЎРµРєС†РёСЏ 1[/b]'
 print ''
-exec pChessFloor2 2,1
+exec pChessFloor2 2, 1
 print ''
-print '[b]Секция 2[/b]'
+print '[b]РЎРµРєС†РёСЏ 2[/b]'
 print ''
-exec pChessFloor2 2,2
+exec pChessFloor2 2, 2
 print ''
-print '[b]Секция 3[/b]'
+print '[b]РЎРµРєС†РёСЏ 3[/b]'
 print ''
-exec pChessFloor2 2,3
+exec pChessFloor2 2, 3
 print ''
-print '[spoiler="Список жильцов"]'
+print '[spoiler="РЎРїРёСЃРѕРє Р¶РёР»СЊС†РѕРІ"]'
 declare @nchar varchar(8000)=''
-select @nchar = @nchar+name +' (№ '+ cast(flat as varchar(5))+')'+ char(13) 
+select @nchar = @nchar+name +' (в„– '+ cast(flat as varchar(5))+')'+ char(13)
 from tUser
 where houseid = 2 and isDisable = 0
 order by name
 print @nchar
 
 print '[/spoiler]'
-print 'Для добавления указываем Секцию, Этаж, Квартиру'
+print 'Р”Р»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СѓРєР°Р·С‹РІР°РµРј РЎРµРєС†РёСЋ, Р­С‚Р°Р¶, РљРІР°СЂС‚РёСЂСѓ'
 
 go
 */
 /*
-print '[b]Молодежный III[/b]'
+print '[b]РњРѕР»РѕРґРµР¶РЅС‹Р№ III[/b]'
 print ''
-print '[b]Секция 1[/b]'
+print '[b]РЎРµРєС†РёСЏ 1[/b]'
 print ''
-exec pChessFloor2 3,1
+exec pChessFloor2 3, 1
 print ''
-print '[b]Секция 2[/b]'
+print '[b]РЎРµРєС†РёСЏ 2[/b]'
 print ''
-exec pChessFloor2 3,2
+exec pChessFloor2 3, 2
 print ''
-print '[b]Секция 3[/b]'
+print '[b]РЎРµРєС†РёСЏ 3[/b]'
 print ''
-exec pChessFloor2 3,3
+exec pChessFloor2 3, 3
 print ''
-print '[spoiler="Список жильцов"]'
+print '[spoiler="РЎРїРёСЃРѕРє Р¶РёР»СЊС†РѕРІ"]'
 declare @nchar varchar(8000)=''
-select @nchar = @nchar+name +' (№ '+ cast(flat as varchar(5))+')'+ char(13) 
+select @nchar = @nchar+name +' (в„– '+ cast(flat as varchar(5))+')'+ char(13)
 from tUser
 where houseid = 3 and isDisable = 0
 order by name
 print @nchar
 
 print '[/spoiler]'
-print 'Для добавления указываем Секцию, Этаж, Квартиру'
+print 'Р”Р»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СѓРєР°Р·С‹РІР°РµРј РЎРµРєС†РёСЋ, Р­С‚Р°Р¶, РљРІР°СЂС‚РёСЂСѓ'
 
 go
 */

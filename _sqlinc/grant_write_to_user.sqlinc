@@ -1,0 +1,3 @@
+﻿  -- права только на редактирование данных таблиц и представлений (для конкретного пользователя)
+  grant select, insert, update, delete on $(_SCHEMA).$(_OBJECT) to [$(_USER)]
+go

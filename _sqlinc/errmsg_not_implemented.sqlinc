@@ -1,0 +1,5 @@
+﻿--{{ include \_sqlinc\errmsg_not_implemented.sqlinc
+declare @__object_name__ varchar(200) = object_schema_name(@@procid) + '.' + object_name(@@procid);
+
+raiserror('%s NOT IMPLEMENTED', 11, 1, @__object_name__);
+--}} include \_sqlinc\errmsg_not_implemented.sqlinc

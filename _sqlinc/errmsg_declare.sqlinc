@@ -1,0 +1,10 @@
+﻿--{{ include $Source: /home/cvs/fact/Sql/_sqlinc/errmsg_declare.sqlinc,v $ $Name:  $ $Revision: 1.1 $ $Date: 2008/06/03 20:17:07 $
+declare @__err_num__ int, @__err_sev__ int, @__err_state__ int, @__err_line__ int, @__err_msg__ varchar(1000), @__err_proc__ varchar(255);
+
+set @__err_num__ = error_number();
+set @__err_sev__ = error_severity();
+set @__err_state__ = error_state();
+set @__err_line__ = error_line();
+set @__err_msg__ = error_message();
+set @__err_proc__ = error_procedure();
+--}} include $Source: /home/cvs/fact/Sql/_sqlinc/errmsg_declare.sqlinc,v $ $Name:  $ $Revision: 1.1 $ $Date: 2008/06/03 20:17:07 $

@@ -1,23 +1,23 @@
-/*
-$Date: 15.09.2014 12:03:27 $
+п»ї/*
+$Date: 15.09.2014 13:02:02 $
 $Source: Git\gk-molodegniy\Init\tDigit.sql $
 
-Назначение:
+РќР°Р·РЅР°С‡РµРЅРёРµ:
 
-Пример вызова:
+РџСЂРёРјРµСЂ РІС‹Р·РѕРІР°:
 */
 
 set quoted_identifier on
 go
 
 if not exists (
-	select 1 from information_schema.views
+	select 1 from information_schema.tables
 		where table_schema = N'dbo' and table_name = N'tDigit'
 )
 	create table dbo.tDigit(
 		id int identity(1, 1) not null,
 		num int null
-	) on primary
+	) on [primary]
 
 go
 

@@ -1,0 +1,15 @@
+﻿/*
+\fact-db\_sqlinc\set_trigger_first.sqlinc
+*/
+
+declare @rc_ int = 0;
+
+exec @rc_ = sp_settriggerorder
+	@triggername = '$(_SCHEMA).$(_OBJECT)'
+,	@order = 'first'
+,	@stmttype = '$(_STMTTYPE)'
+;
+
+if( @rc_ <> 0 ) raiserror ('Ошибка sp_settriggerorder для $(_SCHEMA).$(_OBJECT)', 16, 1);
+
+go

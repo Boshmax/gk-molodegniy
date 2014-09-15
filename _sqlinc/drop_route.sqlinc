@@ -1,0 +1,21 @@
+﻿/*
+$Name:  $
+$Revision: 1.2 $
+$Date: 2008/05/27 15:50:48 $
+$Source: /home/cvs/fact/Sql/_sqlinc/drop_route.sqlinc,v $
+
+Назначение:
+
+Пример вызова:
+*/
+
+if exists(
+	select 1 from sys.routes r
+	where r.name = '$(_OBJECT)'
+)
+drop route $(_OBJECT);
+go
+
+
+
+

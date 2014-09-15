@@ -1,10 +1,16 @@
-/****** Object:  table dbo.tFloor    Script Date: 09/15/2014 09:23:27 ******/
+﻿/*
+$Date: 15.09.2014 13:02:07 $
+$Source: Git\gk-molodegniy\Init\tFloor.sql $
 
+Назначение:
+
+Пример вызова:
+*/
 set quoted_identifier on
 go
 
 if not exists (
-	select 1 from information_schema.views
+	select 1 from information_schema.tables
 		where table_schema = N'dbo' and table_name = N'tFloor'
 )
 
@@ -17,7 +23,7 @@ if not exists (
 		UrlMap varchar(200) null,
 		inFlat bit null,
 		NewFlatinFloor int null
-	) on primary
+	) on [primary]
 
 go
 

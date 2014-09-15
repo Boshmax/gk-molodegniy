@@ -1,0 +1,12 @@
+﻿--{{ \_sqlinc\pp_register.sqlinc
+go
+
+exec sysmaint.pPlugProcRegister
+  @szCode = '$(_PP_GROUP)'
+, @szProcName = '$(_SCHEMA).$(_OBJECT)'
+, @szName = '*'
+, @szAlias = '$(_PP_ALIAS)'
+, @nIgnoreSysobjects = 0
+;
+go
+--}} \_sqlinc\pp_register.sqlinc
