@@ -16,3 +16,9 @@ CREATE TABLE [dbo].[tHouse](
 GO
 
 
+insert [tHouse](house, unit, floors,flatinfloor)
+select 1,	1,	20,	12
+union all
+select 2,	3,	25,	9
+union all
+select 3,	3,	25,	9
