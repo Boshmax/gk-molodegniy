@@ -1,0 +1,8 @@
+﻿; $Date: 2010/02/02 10:38:17 $
+; _server.bat
+
+$call ../_schemas.bat
+$set _SCHEMA=%_DBO_SCHEMA%
+
+tDigit.sql
+
