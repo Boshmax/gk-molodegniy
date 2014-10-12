@@ -15,8 +15,8 @@ if not exists (
 		where table_schema = N'dbo' and table_name = N'tDigit'
 )
 	create table dbo.tDigit(
-		id int identity(1, 1) not null,
-		num int null
+		Id int identity(1, 1) not null,
+		Num int null
 	) on [primary]
 
 go
@@ -31,7 +31,7 @@ declare @n int = 1;
 
 while @n<1000
 begin
-	insert dbo.tDigit(num)
+	insert dbo.tDigit(Num)
 	select @n;
 
 	set @n= @n+1;

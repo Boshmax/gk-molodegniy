@@ -14,12 +14,12 @@ if not exists (
 		where table_schema = N'dbo' and table_name = N'tUser'
 )
 create table [dbo].[tUser](
-	[id] [int] identity(1, 1) not null,
-	[name] [varchar](50) null,
-	[userid] [int] null,
-	[houseid] [int] null,
-	[flatStr] [int] null,
-	[isDisable] [bit] not null default ((0)),
+	[Id] [int] identity(1, 1) not null,
+	[Name] [varchar](50) null,
+	[UserId] [int] null,
+	[HouseId] [int] null,
+	[FlatStr] [int] null,
+	[IsDisable] [bit] not null default ((0)),
 	[Nev] [nchar](10) null,
 	[Flat] [int] null,
 	[Fraction] [bit] not null  default ((0)) ,

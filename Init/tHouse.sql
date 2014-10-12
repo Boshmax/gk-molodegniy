@@ -15,11 +15,12 @@ if not exists (
 		where table_schema = N'dbo' and table_name = N'tHouse'
 )
 	create table [dbo].[tHouse](
-		[id] [int] identity(1, 1) not null,
-		[house] [int] null,
-		[unit] [int] null,
-		[floors] [int] null,
-		[flatinfloor] [int] null
+		[Id] [int] identity(1, 1) not null,
+		[House] [int] null,
+		[Unit] [int] null,
+		[Floors] [int] null,
+		[FlatInFloor] [int] null
+	,	StartApartamentNum [int] null
 	) on [primary]
 
 go
@@ -28,9 +29,9 @@ go
 truncate table dbo.tHouse;
 go
 
-insert [tHouse](house, unit, floors, flatinfloor)
-select 1, 1, 20, 12
+insert [tHouse](House, Unit, Floors, FlatInFloor, StartApartamentNum)
+select 1, 1, 20, 12,  8
 union all
-select 2, 3, 25, 9
+select 2, 3, 25, 9, 0
 union all
-select 3, 3, 25, 9
+select 3, 3, 25, 9, 0

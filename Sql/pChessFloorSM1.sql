@@ -1,4 +1,4 @@
-﻿:r ../_sqlinc/create_proc.sqlinc
+﻿--:r ../_sqlinc/create_proc.sqlinc
 /*
 $Date: 15.09.2014 13:26:39 $
 $Source: Git\gk-molodegniy\Sql\pChessFloorSM1.sql $
@@ -8,11 +8,12 @@ $Source: Git\gk-molodegniy\Sql\pChessFloorSM1.sql $
 Пример вызова:
 */
 
-alter procedure $(_SCHEMA).$(_OBJECT)
+--alter procedure $(_SCHEMA).$(_OBJECT)
+declare
 	@nHouse int = 1
 ,	@nUnit int = 1
 ,	@bitStr bit = 1
-as
+--as
 
 declare @nFloors_ int
 ,	@nFlatInFloor_ int
@@ -44,11 +45,12 @@ print '
 print '[tr]'
 print '[td] # [/td]'
 set @nFlatInFloorId_ = 1
+
 while @nFlatInFloorId_ <= @nFlatInFloor_
 begin
-print '[td]' + isnull(cast(@nFlatInFloorId_ as varchar(20)),'')+ '[/td]'
+	print '[td]' + isnull(cast(@nFlatInFloorId_ as varchar(20)),'')+ '[/td]'
 
-set @nFlatInFloorId_ = @nFlatInFloorId_ + 1
+	set @nFlatInFloorId_ = @nFlatInFloorId_ + 1
 end
 print '[/tr]'
 
@@ -56,20 +58,22 @@ while @nFloorsId_ > 0
 begin
 	print '[tr]'
 
-	select @nUnitFlat_ = isnull(sum(flatinfloor), 0)
-	from tfloor
-	where houseid = @nHouse and unit = @nUnit and floorNum < @nFloorsId_
+	select @nUnitFlat_ = isnull(sum(FlatInFloor), 0)
+	from dbo.tFloor
+	where HouseId = @nHouse and Unit = @nUnit and FloorNum < @nFloorsId_
 
-	select @nRealFlatInFloor_ =  flatinfloor
-	,	@szUrlMap_ = urlMap
-	from tfloor
-	where houseid = @nHouse and Unit = @nUnit and floorNum = @nFloorsId_
-
+	select @nRealFlatInFloor_ =  FlatInFloor
+	,	@szUrlMap_ = UrlMap
+	from tFloor
+	where HouseId = @nHouse and Unit = @nUnit and FloorNum = @nFloorsId_
+	
+	--построение заколовка таблицы с порядковыми номерами
 	set @nFlatInFloorId_ = 1
 	if @szUrlMap_ <> ''
 		print '[td][url='+isnull(@szUrlMap_,'')+']' + isnull(cast(@nFloorsId_ as varchar(20)),'')+ '[/url][/td]'
 	else
 		print '[td]'+isnull(cast(@nFloorsId_ as varchar(20)),'')+ '[/td]'
+
 
 	while @nFlatInFloorId_ <= @nFlatInFloor_
 	begin
@@ -80,24 +84,24 @@ begin
 			set @nFlatId_ = 0
 		if @nRealFlatInFloor_ >= @nFlatInFloorId_
 		begin
-			if exists(select * from tUser where flat = @nFlatId_ and Houseid = @nHouse and isDisable = 0  and Apartment = 0)
+			if exists(select 1 from dbo.tUser where Flat = @nFlatId_ and Houseid = @nHouse and IsDisable = 0  and Apartment = 0)
 			begin
 				set @nUserId_ = 0
 				set @szUser_ = ''
 				set @abbr_ = cast(@nFlatId_ as varchar(20))
 				while 1 = 1
 				begin
-					select top 1 @nUserId_ = Id from tUser where Id > @nUserId_ and houseid = @nHouse and flat = @nFlatId_ and isDisable = 0 and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0 order by Id
+					select top 1 @nUserId_ = Id from dbo.tUser where Id > @nUserId_ and HouseId = @nHouse and Flat = @nFlatId_ and IsDisable = 0 and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0 order by Id
 					if @@rowcount = 0
 						break
 
 					select @szUser_ = @szUser_ +
-						case when userid is not null
-							then '[abbr="'+name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(userid as varchar(20))+']'+@abbr_+'[/url][/abbr] '
-						else '[abbr="'+name+'"]'+@abbr_+'[/abbr] '
+						case when UserId is not null
+							then '[abbr="'+Name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(UserId as varchar(20))+']'+@abbr_+'[/url][/abbr] '
+						else '[abbr="'+Name+'"]'+@abbr_+'[/abbr] '
 						end
-					from tUser
-					where flat = @nFlatId_ and ID = @nUserId_ and houseid = @nHouse  and Apartment = 0
+					from dbo.tUser
+					where Flat = @nFlatId_ and Id = @nUserId_ and HouseId = @nHouse and Apartment = 0
 					set @abbr_ = ' *'
 				end
 				set @nUserId_ = 0
@@ -106,18 +110,18 @@ begin
 				begin
 					while 1 = 1
 					begin
-						select top 1 @nUserId_ = Id from tUser where Id > @nUserId_ and houseid = @nHouse and flat = @nFlatId_ and isDisable = 0 and Fraction = 1 and Apartment = 0 order by Id
+						select top 1 @nUserId_ = Id from dbo.tUser where Id > @nUserId_ and HouseId = @nHouse and Flat = @nFlatId_ and IsDisable = 0 and Fraction = 1 and Apartment = 0 order by Id
 						if @@rowcount = 0
 							break
 
 						select @szUser_ = @szUser_ +
-							case when userid is not null
-								then '[abbr="'+name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(userid as varchar(20))+']'+@abbr_+'[/url][/abbr] '
-							else '[abbr="'+name+'"]'+@abbr_+'[/abbr] '
+							case when UserId is not null
+								then '[abbr="'+Name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(UserId as varchar(20))+']'+@abbr_+'[/url][/abbr] '
+							else '[abbr="'+Name+'"]'+@abbr_+'[/abbr] '
 							end
 						,	@bitFraction_ = Fraction
-						from tUser
-						where flat = @nFlatId_ and ID = @nUserId_ and houseid = @nHouse and Apartment = 0
+						from dbo.tUser
+						where Flat = @nFlatId_ and Id = @nUserId_ and HouseId = @nHouse and Apartment = 0
 						set @abbr_ = ' *'
 					end
 				end

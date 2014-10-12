@@ -6,5 +6,6 @@ $set _SCHEMA=%_DBO_SCHEMA%
 
 tDigit.sql
 tFloor.sql
+tFlatDetail.sql
 tHouse.sql
 tUser.sql
