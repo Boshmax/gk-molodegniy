@@ -1,0 +1,9 @@
+﻿; $Date: 2010/02/02 10:38:17 $
+; _server.bat
+
+$call ../_schemas.bat
+$set _SCHEMA=%_DBO_SCHEMA%
+
+init_House1.sql
+init_House2.sql
+init_House3.sql

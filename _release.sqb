@@ -8,4 +8,6 @@ $call _schemas.bat
 #include Sql\_release.sqb
 
 
+#include Data\_release.sqb
+
 
