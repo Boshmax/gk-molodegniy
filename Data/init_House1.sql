@@ -1,6 +1,6 @@
 ﻿/*
-$Date: 15.09.2014 13:08:31 $
-$Source: Git\gk-molodegniy\Init\tUser.sql $
+$Date: 13.10.2014 18:50:18 $
+$Source: Git\gk-molodegniy\Data\init_House1.sql $
 
 Назначение:
 
@@ -9,9 +9,9 @@ $Source: Git\gk-molodegniy\Init\tUser.sql $
 
 
 */
-declare @strString_ varchar(max)=
+declare @strString_ nvarchar(max)=
 '[b]Молодежный I[/b]
- 
+
 
 [table layout=fixed width=426px]
 [tr]
@@ -335,7 +335,7 @@ declare @strString_ varchar(max)=
 [td][color=#F4FADB]0[/color][/td]
 [/tr]
 [/table]
- 
+
 [spoiler="Список жильцов"]Alexander L (№ 70)
 Alexey (№ 208)
 Alexxx (№ 23)
@@ -413,3 +413,4 @@ zlaya_takca (№ 61)
 exec dbo.pParseChessFloor
 	@strString = @strString_
 ,	@debug = 0
+

@@ -1,6 +1,6 @@
 ﻿/*
-$Date: 15.09.2014 13:08:31 $
-$Source: Git\gk-molodegniy\Init\tUser.sql $
+$Date: 13.10.2014 18:51:03 $
+$Source: Git\gk-molodegniy\Data\init_House2.sql $
 
 Назначение:
 
@@ -11,9 +11,9 @@ $Source: Git\gk-molodegniy\Init\tUser.sql $
 */
 declare @strString_ varchar(max)=
 '[b]Молодежный II[/b]
- 
+
 [b]Секция 1[/b]
- 
+
 
 [table layout=fixed width=327px]
 [tr]
@@ -333,9 +333,9 @@ declare @strString_ varchar(max)=
 [td][color=#F4FADB]0[/color][/td]
 [/tr]
 [/table]
- 
+
 [b]Секция 2[/b]
- 
+
 
 [table layout=fixed width=327px]
 [tr]
@@ -655,9 +655,9 @@ declare @strString_ varchar(max)=
 [td][color=#F4FADB]0[/color][/td]
 [/tr]
 [/table]
- 
+
 [b]Секция 3[/b]
- 
+
 
 [table layout=fixed width=327px]
 [tr]
@@ -832,7 +832,7 @@ declare @strString_ varchar(max)=
 [td][color=#F4FADB]539[/color][/td]
 [td][color=#F4FADB]540[/color][/td]
 [/tr]
-[tr] 
+[tr]
 [td][url=http://s3.uploads.ru/rmbBO.png]12[/url][/td]
 [td][abbr="Vileclaw"][url=http://gk-molodegniy.ru/profile.php?id=684]523[/url][/abbr] [/td]
 [td][color=#F4FADB]524[/color][/td]
@@ -977,8 +977,8 @@ declare @strString_ varchar(max)=
 [td][color=#F4FADB]0[/color][/td]
 [/tr]
 [/table]
- 
- 
+
+
 [spoiler="Список жильцов"]33green (№ 204)
 ak75 (№ 246)
 Alem (№ 171)
