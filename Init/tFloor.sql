@@ -23,7 +23,7 @@ if not exists (
 		UrlMap varchar(200) null,
 		InFlat bit null
 	,	NewFlatInFloor int null
-	,	ApartanentInFloor int not null default(0)
+	,	ApartmentInFloor int not null default(0)
 	) on [primary]
 
 go
@@ -210,5 +210,5 @@ union	all	select		25,	3,	3,	9,	'http://s3.uploads.ru/u67hU.png',	1,	null
 
 
 update dbo.tFloor
-set ApartanentInFloor = 1
+set ApartmentInFloor = 3
 where HouseId = 1 and FloorNum in (2, 3)

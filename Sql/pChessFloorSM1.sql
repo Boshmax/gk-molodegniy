@@ -17,17 +17,23 @@ declare
 
 declare @nFloors_ int
 ,	@nFlatInFloor_ int
+,	@nApartmentInFloor_ int
 ,	@nStartFlat_ int = 0
 ,	@nUnitFlat_ int = 0
+,	@nUnitApartment_ int = 0
 ,	@nRealFlatInFloor_ int
+,	@nRealApartmentInFloor_ int
+,	@nApartmentId_ int
+,	@nStartApartment_ int = 0
 
-select @nStartFlat_ = isnull(sum(flatinfloor), 0) from tfloor where houseid = @nHouse and unit < @nUnit
+select @nStartFlat_ = isnull(sum(FlatInFloor), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
 
 select @nFloors_ = Floors
 ,	@nFlatInFloor_ = FlatInFloor
-from tHouse where House = @nHouse
+from dbo.tHouse where House = @nHouse
 
 declare @nFlatInFloorId_ int = 1
+,	@nApartmentInFloorId_ int = 1
 ,	@nFloorsId_ int = @nFloors_
 ,	@nFlatId_ int
 ,	@szUser_ varchar(250)
@@ -35,6 +41,7 @@ declare @nFlatInFloorId_ int = 1
 ,	@abbr_ varchar(5)
 ,	@szUrlMap_ varchar(250)
 ,	@bitFraction_ bit = 0
+
 
 print '
 [table layout=fixed width='+cast((@nFlatInFloor_ * 33+30) as varchar(30))+'px]
@@ -46,6 +53,7 @@ print '[tr]'
 print '[td] # [/td]'
 set @nFlatInFloorId_ = 1
 
+--заголовок таблицы с номерами
 while @nFlatInFloorId_ <= @nFlatInFloor_
 begin
 	print '[td]' + isnull(cast(@nFlatInFloorId_ as varchar(20)),'')+ '[/td]'
@@ -54,17 +62,22 @@ begin
 end
 print '[/tr]'
 
+
 while @nFloorsId_ > 0
 begin
 	print '[tr]'
-
+	
+	--колличество квартир до этой площадки в данной секции
 	select @nUnitFlat_ = isnull(sum(FlatInFloor), 0)
+	,	@nUnitApartment_ = isnull(sum(ApartmentInFloor), 0)
 	from dbo.tFloor
 	where HouseId = @nHouse and Unit = @nUnit and FloorNum < @nFloorsId_
 
+	--колличество квартир на данной площадке
 	select @nRealFlatInFloor_ =  FlatInFloor
+	,	@nRealApartmentInFloor_ = ApartmentInFloor
 	,	@szUrlMap_ = UrlMap
-	from tFloor
+	from dbo.tFloor
 	where HouseId = @nHouse and Unit = @nUnit and FloorNum = @nFloorsId_
 	
 	--построение заколовка таблицы с порядковыми номерами
@@ -79,11 +92,16 @@ begin
 	begin
 		set @nFlatId_ = 0
 		select @nFlatId_ = @nStartFlat_	+ @nUnitFlat_ + @nFlatInFloorId_
+		select @nApartmentId_ = @nStartApartment_	+ @nUnitApartment_ + @nApartmentInFloorId_
 
 		if @nFloorsId_ = 1
 			set @nFlatId_ = 0
+
 		if @nRealFlatInFloor_ >= @nFlatInFloorId_
 		begin
+			select * from dbo.tFlatDetail where Houseid = @nHouse and [Floor] = @nFloorsId_ and 
+		
+		
 			if exists(select 1 from dbo.tUser where Flat = @nFlatId_ and Houseid = @nHouse and IsDisable = 0  and Apartment = 0)
 			begin
 				set @nUserId_ = 0
