@@ -14,47 +14,79 @@ declare
 ,	@nUnit int = 1
 ,	@bitStr bit = 1
 --as
+declare 
+	@nMaxFlatInFloor_ int --макимальное количество пемещений на площадке
+,	@nStartFlat_ int	--начало нумерации в данной секции
+,	@nStartApartment_ int --начало нумерации в данной секции
+,	@nFloors_ int         --количество этажей
 
-declare @nFloors_ int
-,	@nFlatInFloor_ int
-,	@nApartmentInFloor_ int
-,	@nStartFlat_ int = 0
-,	@nUnitFlat_ int = 0
-,	@nUnitApartment_ int = 0
-,	@nRealFlatInFloor_ int
-,	@nRealApartmentInFloor_ int
-,	@nApartmentId_ int
-,	@nStartApartment_ int = 0
+,	@nUnitFlat_ int = 0          --количество квартир до этой площадки
+,	@nFlatInFloor_ int = 0       --количество квартир на этой площадки
+,	@nUnitApartment_ int = 0     --количество апартаментов до этой площадки
+,	@nApartmentInFloor_ int = 0  --количество апартаментов на этой площадки
 
-select @nStartFlat_ = isnull(sum(FlatInFloor), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
+,	@nFloorsId_ int		  --Этаж
+,	@nFlatInFloorId_ int  --Помещение на этаже
+,	@nFlatId_ int         --Квартира
+,	@nApartmentId_ int    --Апартамент
 
-select @nFloors_ = Floors
-,	@nFlatInFloor_ = FlatInFloor
-from dbo.tHouse where House = @nHouse
 
-declare @nFlatInFloorId_ int = 1
-,	@nApartmentInFloorId_ int = 1
-,	@nFloorsId_ int = @nFloors_
-,	@nFlatId_ int
+,	@nFlatGroup_ int      --Объединение квартиры
+,	@isApartament_ bit    --Признак апартамента
+
+declare 
+	@szUrlMap_ varchar(250)
+,	@szFlatNum_ varchar(10)
+,	@szText_ varchar(250)
+,	@szColspan_ varchar(20) = ''
 ,	@szUser_ varchar(250)
 ,	@nUserId_ int
+,	@abbr_ varchar(5)
+/*
+
+declare 
+	@nRealFlatInFloor_ int
+,	@nRealApartmentInFloor_ int
+,	@nApartmentId_ int
+
+
+declare @nApartmentInFloorId_ int = 1
+,	@nFlatId_ int
+
 ,	@abbr_ varchar(5)
 ,	@szUrlMap_ varchar(250)
 ,	@bitFraction_ bit = 0
 
+*/
+
+--начало нумерации в данной секции
+select @nStartFlat_ = isnull(sum(FlatInFloor), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
+select @nStartApartment_ = isnull(sum(ApartmentInFloor), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
+
+select @nStartApartment_ = @nStartApartment_  + StartApartamentNum - 1
+from dbo.tHouse where Id = @nHouse
+
+--получаем колличество этажей
+select @nFloors_ = Floors
+from dbo.tHouse where House = @nHouse
+
+--получаем максимальное колличество помещений на площадке
+select @nMaxFlatInFloor_ =  max(FlatInFloor + ApartmentInFloor)
+from dbo.tFloor where HouseId = @nHouse and Unit = @nUnit
+
 
 print '
-[table layout=fixed width='+cast((@nFlatInFloor_ * 33+30) as varchar(30))+'px]
+[table layout=fixed width='+cast((@nMaxFlatInFloor_ * 33+30) as varchar(30))+'px]
 [tr]
 [td width=30px bgcolor=#84A577][color=white]Этаж[/color][/td]
-[td colspan='+isnull(cast(@nFlatInFloor_ as varchar(20)),'')+' bgcolor=#84A577][align=center][color=white]Номер на площадке[/color][/align][/td]
+[td colspan='+isnull(cast(@nMaxFlatInFloor_ as varchar(20)),'')+' bgcolor=#84A577][align=center][color=white]Номер на площадке[/color][/align][/td]
 [/tr]'
 print '[tr]'
 print '[td] # [/td]'
-set @nFlatInFloorId_ = 1
 
+set @nFlatInFloorId_ = 1
 --заголовок таблицы с номерами
-while @nFlatInFloorId_ <= @nFlatInFloor_
+while @nFlatInFloorId_ <= @nMaxFlatInFloor_
 begin
 	print '[td]' + isnull(cast(@nFlatInFloorId_ as varchar(20)),'')+ '[/td]'
 
@@ -62,46 +94,118 @@ begin
 end
 print '[/tr]'
 
+set @nFloorsId_ = @nFloors_
 
+--основная таблица
+--Поэтажный цикл
 while @nFloorsId_ > 0
 begin
 	print '[tr]'
 	
-	--колличество квартир до этой площадки в данной секции
+	--количество квартир до этой площадки в данной секции
 	select @nUnitFlat_ = isnull(sum(FlatInFloor), 0)
 	,	@nUnitApartment_ = isnull(sum(ApartmentInFloor), 0)
 	from dbo.tFloor
 	where HouseId = @nHouse and Unit = @nUnit and FloorNum < @nFloorsId_
 
-	--колличество квартир на данной площадке
-	select @nRealFlatInFloor_ =  FlatInFloor
-	,	@nRealApartmentInFloor_ = ApartmentInFloor
+	--количество квартир на данной площадке
+	select @nFlatInFloor_ =  FlatInFloor
+	,	@nApartmentInFloor_ = ApartmentInFloor
 	,	@szUrlMap_ = UrlMap
 	from dbo.tFloor
 	where HouseId = @nHouse and Unit = @nUnit and FloorNum = @nFloorsId_
 	
-	--построение заколовка таблицы с порядковыми номерами
-	set @nFlatInFloorId_ = 1
+	--построение столбца таблицы с порядковыми номерами
 	if @szUrlMap_ <> ''
 		print '[td][url='+isnull(@szUrlMap_,'')+']' + isnull(cast(@nFloorsId_ as varchar(20)),'')+ '[/url][/td]'
 	else
 		print '[td]'+isnull(cast(@nFloorsId_ as varchar(20)),'')+ '[/td]'
 
+	select @nFlatId_ = @nStartFlat_	+ @nUnitFlat_
+	select @nApartmentId_ = @nStartApartment_	+ @nUnitApartment_
 
-	while @nFlatInFloorId_ <= @nFlatInFloor_
+	--Внутриэтажный цикл
+	set @nFlatInFloorId_ = 1	
+	while @nFlatInFloorId_ <= @nMaxFlatInFloor_
 	begin
-		set @nFlatId_ = 0
-		select @nFlatId_ = @nStartFlat_	+ @nUnitFlat_ + @nFlatInFloorId_
-		select @nApartmentId_ = @nStartApartment_	+ @nUnitApartment_ + @nApartmentInFloorId_
+		set @isApartament_ = 0
+		set @nFlatGroup_ = 0
+		set @szColspan_ = ''
+
+		select @isApartament_ = isnull(Apartament, 0)
+		,	@nFlatGroup_ = FlatGroup
+		from dbo.tFlatDetail where Houseid = @nHouse and [Floor] = @nFloorsId_ and FlatInFloor = @nFlatInFloorId_
+
+		if @isApartament_ = 1
+		begin 
+			set @nApartmentId_ = @nApartmentId_ + 1
+			set @szFlatNum_ = 'A'+ cast(@nApartmentId_ as varchar(10))
+		end
+		else
+		begin 
+			set @nFlatId_ = @nFlatId_ + 1
+			set @szFlatNum_ = @nFlatId_
+		end
+
+		if @nFlatGroup_ > 1
+		begin 
+			set @szColspan_ = ' colspan='+cast(@nFlatGroup_ as varchar(10))+''
+			set @nFlatInFloorId_ = @nFlatInFloorId_ + @nFlatGroup_ - 1
+		end
 
 		if @nFloorsId_ = 1
 			set @nFlatId_ = 0
+
+		if exists(select 1 from dbo.tUser 
+				where HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
+				and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
+			)
+		begin
+			set @nUserId_ = 0
+			set @szUser_ = ''
+			if @isApartament_ = 1
+				set @abbr_ = 'A'+ cast(@nApartmentId_ as varchar(20))
+			else
+				set @abbr_ = cast(@nFlatId_ as varchar(20))
+			while 1 = 1
+			begin
+				select top 1 @nUserId_ = Id 
+				from dbo.tUser 
+				where Id > @nUserId_ and HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
+				and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
+				--and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0 
+				order by Id
+					if @@rowcount = 0
+						break
+
+				select @szUser_ = @szUser_ +
+						case when UserId is not null
+							then '[abbr="'+Name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(UserId as varchar(20))+']'+@abbr_+'[/url][/abbr] '
+						else '[abbr="'+Name+'"]'+@abbr_+'[/abbr] '
+						end
+				from dbo.tUser
+				where Id = @nUserId_ 
+
+				set @abbr_ = ' *'
+			end
+			print '[td'+ @szColspan_ + ']' + @szUser_ + '[/td]'
+		end
+		else
+		begin
+			print '[td'+ @szColspan_ + '][color=#F4FADB]' + @szFlatNum_+ '[/color][/td]'
+		end
+
+/*			
+
+
+
 
 		if @nRealFlatInFloor_ >= @nFlatInFloorId_
 		begin
 			select * from dbo.tFlatDetail where Houseid = @nHouse and [Floor] = @nFloorsId_ and 
 		
 		
+
 			if exists(select 1 from dbo.tUser where Flat = @nFlatId_ and Houseid = @nHouse and IsDisable = 0  and Apartment = 0)
 			begin
 				set @nUserId_ = 0
@@ -146,7 +250,9 @@ begin
 				print '[td]' + @szUser_ + '[/td]'
 			end
 			else
-				print '[td][color=#F4FADB]' + isnull(cast(@nFlatId_ as varchar(20)),'')+ '[/color][/td]'
+			*/
+				
+				/*
 		end
 		else
 		begin
@@ -155,6 +261,7 @@ begin
 			else
 				print '[td]X[/td]'
 		end
+		*/
 		set @nFlatInFloorId_ = @nFlatInFloorId_ + 1
 	end
 	set @nFloorsId_ = @nFloorsId_ - 1

@@ -1,6 +1,6 @@
 ﻿/*
-$Date: 15.09.2014 13:08:31 $
-$Source: Git\gk-molodegniy\Init\tUser.sql $
+$Date: 14.10.2014 19:18:07 $
+$Source: Git\gk-molodegniy\Init\tFlatDetail.sql $
 
 Назначение:
 
@@ -29,22 +29,24 @@ go
 
 
 
+truncate table dbo.tFlatDetail
+go
 
 insert dbo.tFlatDetail(HouseId, Unit, [Floor], FlatInFloor, FlatGroup, Apartament)
-select 1,	1,	2,	11,	2, 0
-union all
-select 1,	1,	3,	11,	2, 0
+
+select 1, 1, 1, 1, 12, 0
 union all
 
-select 1,	1,	2,	2,	1, 1
+
+select 1, 1, 2, 2, 1, 1
 union all
-select 1,	1,	2,	3,	1, 1
+select 1, 1, 2, 3, 1, 1
 union all
-select 1,	1,	2,	4,	1, 1
+select 1, 1, 2, 4, 2, 1
 union all
-select 1,	1,	3,	2,	1, 1
+select 1, 1, 3, 2, 1, 1
 union all
-select 1,	1,	3,	3,	1, 1
+select 1, 1, 3, 3, 1, 1
 union all
-select 1,	1,	3,	4,	1, 1
+select 1, 1, 3, 4, 2, 1
 

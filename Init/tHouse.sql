@@ -1,5 +1,5 @@
 ﻿/*
-$Date: 15.09.2014 13:02:13 $
+$Date: 14.10.2014 18:55:52 $
 $Source: Git\gk-molodegniy\Init\tHouse.sql $
 
 Назначение:
@@ -30,7 +30,7 @@ truncate table dbo.tHouse;
 go
 
 insert [tHouse](House, Unit, Floors, FlatInFloor, StartApartamentNum)
-select 1, 1, 20, 12,  8
+select 1, 1, 20, 12, 8
 union all
 select 2, 3, 25, 9, 0
 union all
