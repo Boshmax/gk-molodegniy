@@ -82,7 +82,7 @@ union	all	select		21,	2,	1,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/24979.j
 union	all	select		22,	2,	1,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/74743.jpg',	1,	9
 union	all	select		23,	2,	1,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/74743.jpg',	1,	9
 union	all	select		24,	2,	1,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/74743.jpg',	1,	9
-union	all	select		25,	2,	1,	9,	'http://s2.uploads.ru/5eS47.png',	1,	9
+union	all	select		25,	2,	1,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/24979.jpg',	1,	9
 union	all	select		2,	2,	2,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/52052.jpg',	1,	9
 union	all	select		3,	2,	2,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/52052.jpg',	1,	9
 union	all	select		4,	2,	2,	9,	'http://gk-molodegniy.ru/files/0011/53/1d/52052.jpg',	1,	9
