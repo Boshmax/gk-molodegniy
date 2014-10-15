@@ -8,12 +8,10 @@ $Source: Git\gk-molodegniy\Sql\pChessFloorSM1.sql $
 Пример вызова:
 */
 
---alter procedure $(_SCHEMA).$(_OBJECT)
-declare
-	@nHouse int = 1
-,	@nUnit int = 1
-,	@bitStr bit = 1
---as
+alter procedure $(_SCHEMA).$(_OBJECT)
+	@nHouse int
+,	@nUnit int
+as
 declare 
 	@nMaxFlatInFloor_ int --макимальное количество пемещений на площадке
 ,	@nStartFlat_ int	--начало нумерации в данной секции
@@ -134,7 +132,7 @@ begin
 
 		select @isApartament_ = isnull(Apartament, 0)
 		,	@nFlatGroup_ = FlatGroup
-		from dbo.tFlatDetail where Houseid = @nHouse and [Floor] = @nFloorsId_ and FlatInFloor = @nFlatInFloorId_
+		from dbo.tFlatDetail where Houseid = @nHouse and Unit = @nUnit and [Floor] = @nFloorsId_ and FlatInFloor = @nFlatInFloorId_
 
 		if @isApartament_ = 1
 		begin 
@@ -154,7 +152,9 @@ begin
 		end
 
 		if @nFloorsId_ = 1
-			set @nFlatId_ = 0
+		begin 
+			set @szFlatNum_ = ''
+		end
 
 		if exists(select 1 from dbo.tUser 
 				where HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
@@ -188,11 +188,11 @@ begin
 
 				set @abbr_ = ' *'
 			end
-			print '[td'+ @szColspan_ + ']' + @szUser_ + '[/td]'
+			print '[td'+ @szColspan_ + '][align=center]' + @szUser_ + '[/align][/td]'
 		end
 		else
 		begin
-			print '[td'+ @szColspan_ + '][color=#F4FADB]' + @szFlatNum_+ '[/color][/td]'
+			print '[td'+ @szColspan_ + '][align=center][color=#F4FADB]' + @szFlatNum_+ '[/color][/align][/td]'
 		end
 
 /*			
