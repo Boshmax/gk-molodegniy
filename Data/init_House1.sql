@@ -1,5 +1,5 @@
 ﻿/*
-$Date: 13.10.2014 18:50:18 $
+$Date: 27.01.2015 10:54:12 $
 $Source: Git\gk-molodegniy\Data\init_House1.sql $
 
 Назначение:
@@ -293,7 +293,7 @@ declare @strString_ nvarchar(max)=
 [td][color=#F4FADB]9[/color][/td]
 [td][abbr="Vladimir Strukov"][url=http://gk-molodegniy.ru/profile.php?id=577]A11[/url][/abbr] [/td]
 [td][abbr="tatishka"][url=http://gk-molodegniy.ru/profile.php?id=322]A12[/url][/abbr][/td]
-[td]A[/td]
+[td colspan=2]A[/td]
 [td][color=#F4FADB]10[/color] [/td]
 [td][abbr="Romber"][url=http://gk-molodegniy.ru/profile.php?id=324]11[/url][/abbr] [/td]
 [td][color=#F4FADB]12[/color][/td]
@@ -301,15 +301,13 @@ declare @strString_ nvarchar(max)=
 [td][color=#F4FADB]14[/color][/td]
 [td][abbr="Lera"][url=http://gk-molodegniy.ru/profile.php?id=596]15[/url][/abbr] [/td]
 [td][color=#F4FADB]16[/color][/td]
-
-[td]X[/td]
 [/tr]
 [tr]
 [td][url=http://s4.uploads.ru/GYzCB.png]2[/url][/td]
 [td][abbr="KeHu"][url=http://gk-molodegniy.ru/profile.php?id=393]1[/url][/abbr] [/td]
 [td]A[/td]
 [td][abbr="Максим"][url=http://gk-molodegniy.ru/profile.php?id=354]A9[/url][/abbr][/td]
-[td]A[/td]
+[td colspan=2]A[/td]
 [td][color=#F4FADB]2[/color][/td]
 [td][color=#F4FADB]3[/color][/td]
 [td][color=#F4FADB]4[/color][/td]
@@ -317,7 +315,6 @@ declare @strString_ nvarchar(max)=
 [td][color=#F4FADB]6[/color][/td]
 [td][color=#F4FADB]7[/color][/td]
 [td][abbr="SergeyKh"][url=http://gk-molodegniy.ru/profile.php?id=575]8[/url][/abbr] [/td]
-[td]X[/td]
 [/tr]
 [tr]
 [td]1[/td]

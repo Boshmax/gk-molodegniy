@@ -16,19 +16,19 @@ print '[b]Молодежный III[/b]'
 print ''
 print '[b]Секция 1[/b]'
 print ''
-exec pChessFloorSM2
+exec pChessFloorSM1
 	@nHouse = 3
 ,	@nUnit = 1
 print ''
 print '[b]Секция 2[/b]'
 print ''
-exec pChessFloorSM2
+exec pChessFloorSM1
 	@nHouse = 3
 ,	@nUnit = 2
 print ''
 print '[b]Секция 3[/b]'
 print ''
-exec pChessFloorSM2
+exec pChessFloorSM1
 	@nHouse = 3
 ,	@nUnit = 3
 print ''

@@ -1,5 +1,5 @@
 ﻿/*
-$Date: 15.10.2014 13:30:20 $
+$Date: 27.01.2015 12:36:12 $
 $Source: Git\gk-molodegniy\Init\tFlatDetail.sql $
 
 Назначение:
@@ -166,3 +166,10 @@ union all
 select 2, 3, 24, 9, 2, 0
 union all
 select 2, 3, 25, 9, 2, 0
+
+union all
+select 3, 1, 1, 1, 9, 0
+union all
+select 3, 2, 1, 1, 9, 0
+union all
+select 3, 3, 1, 1, 9, 0

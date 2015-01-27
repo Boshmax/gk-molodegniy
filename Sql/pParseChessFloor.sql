@@ -1,6 +1,6 @@
 ﻿:r ../_sqlinc/create_proc.sqlinc
 /*
-$Date: 15.09.2014 13:27:20 $
+$Date: 27.01.2015 11:30:59 $
 $Source: Git\gk-molodegniy\Sql\pParseChessFloor.sql $
 
 Назначение:
@@ -32,6 +32,9 @@ create table #tUser (
 ,	Apartment bit
 )
 
+if @debug <> 0
+	select *From #tline
+
 declare @szHouse_ varchar(100)
 ,	@nHouseId_ int
 
@@ -48,6 +51,8 @@ if @szHouse_ = '[b]Молодежный II[/b]'
 	set @nHouseId_ = 2
 if @szHouse_ = '[b]Молодежный III[/b]'
 	set @nHouseId_ = 3
+if @szHouse_ = '[b]Молодежный IV[/b]'
+	set @nHouseId_ = 4
 
 if @nHouseId_ is null
 begin
@@ -78,7 +83,8 @@ begin
 	from dbo.fParseUserFlat(@szLine_)
 
 end
-
+if @debug <> 0
+	select *From #tUser
 --select @nHouseId_ as HouseId
 
 

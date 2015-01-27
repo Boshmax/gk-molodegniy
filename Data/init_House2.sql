@@ -1,5 +1,5 @@
 ﻿/*
-$Date: 15.10.2014 17:12:36 $
+$Date: 27.01.2015 12:50:06 $
 $Source: Git\gk-molodegniy\Data\init_House2.sql $
 
 Назначение:
@@ -11,9 +11,9 @@ $Source: Git\gk-molodegniy\Data\init_House2.sql $
 */
 declare @strString_ varchar(max)=
 '[b]Молодежный II[/b]
- 
+
 [b]Секция 1[/b]
- 
+
 
 [table layout=fixed width=393px]
 [tr]
@@ -39,7 +39,7 @@ declare @strString_ varchar(max)=
 [td][align=center][color=#F4FADB]223[/color][/align][/td]
 [td][align=center][color=#F4FADB]224[/color][/align][/td]
 [td][align=center][color=#F4FADB]225[/color][/align][/td]
-[td colspan=2][align=center][abbr="Gemchugina"][url=http://gk-molodegniy.ru/profile.php?id=1089]226[/url][/abbr][/align][/td]
+[td colspan=2][align=center][abbr="Gemchugina"][url=http://gk-molodegniy.ru/profile.php?id=1089]226[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]227[/color][/align][/td]
 [td][align=center][color=#F4FADB]228[/color][/align][/td]
 [td][align=center][color=#F4FADB]229[/color][/align][/td]
@@ -48,7 +48,7 @@ declare @strString_ varchar(max)=
 [/tr]
 [tr]
 [td][url=http://gk-molodegniy.ru/files/0011/53/1d/74743.jpg]24[/url][/td]
-[td][align=center][abbr="33green"][url=http://gk-molodegniy.ru/profile.php?id=630]214[/url][/abbr] [/align][/td]
+[td][align=center][abbr="33green"][url=http://gk-molodegniy.ru/profile.php?id=630]214[/url][/abbr] [abbr="Woiss"][url=http://gk-molodegniy.ru/profile.php?id=1193]*[/url][/abbr] [/align][/td]
 [td][align=center][abbr="mnbvcx13"][url=http://gk-molodegniy.ru/profile.php?id=501]215[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]216[/color][/align][/td]
 [td][align=center][color=#F4FADB]217[/color][/align][/td]
@@ -263,8 +263,8 @@ declare @strString_ varchar(max)=
 [td][align=center][color=#F4FADB]61[/color][/align][/td]
 [td][align=center][color=#F4FADB]62[/color][/align][/td]
 [td][align=center][color=#F4FADB]63[/color][/align][/td]
-[td][align=center][abbr="Екатерина"][url=http://gk-molodegniy.ru/profile.php?id=557]64[/url][/abbr] [/align][/td]
-[td][align=center][color=#F4FADB]65[/color][/align][/td]
+[td][align=center][color=#F4FADB]64[/color][/align][/td]
+[td][align=center][abbr="Екатерина"][url=http://gk-molodegniy.ru/profile.php?id=557]65[/url][/abbr] [/align][/td]
 [td][align=center][abbr="Valrox"][url=http://gk-molodegniy.ru/profile.php?id=401]66[/url][/abbr] [/align][/td]
 [/tr]
 [tr]
@@ -320,7 +320,7 @@ declare @strString_ varchar(max)=
 [td][align=center][color=#F4FADB]18[/color][/align][/td]
 [td][align=center][color=#F4FADB]19[/color][/align][/td]
 [td][align=center][color=#F4FADB]20[/color][/align][/td]
-[td][align=center][color=#F4FADB]21[/color][/align][/td]
+[td][align=center][abbr="Garik"][url=http://gk-molodegniy.ru/profile.php?id=874]21[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]22[/color][/align][/td]
 [/tr]
 [tr]
@@ -342,9 +342,9 @@ declare @strString_ varchar(max)=
 [td colspan=11][align=center][color=#F4FADB][/color][/align][/td]
 [/tr]
 [/table]
- 
+
 [b]Секция 2[/b]
- 
+
 
 [table layout=fixed width=327px]
 [tr]
@@ -565,7 +565,7 @@ declare @strString_ varchar(max)=
 [td][align=center][abbr="Margo77"][url=http://gk-molodegniy.ru/profile.php?id=340]300[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]301[/color][/align][/td]
 [td][align=center][color=#F4FADB]302[/color][/align][/td]
-[td][align=center][color=#F4FADB]303[/color][/align][/td]
+[td][align=center][abbr="Профессор Мориарти"][url=http://gk-molodegniy.ru/profile.php?id=1119]303[/url][/abbr] [/align][/td]
 [/tr]
 [tr]
 [td][url=http://gk-molodegniy.ru/files/0011/53/1d/52052.jpg]8[/url][/td]
@@ -605,7 +605,7 @@ declare @strString_ varchar(max)=
 [/tr]
 [tr]
 [td][url=http://gk-molodegniy.ru/files/0011/53/1d/52052.jpg]5[/url][/td]
-[td][align=center][color=#F4FADB]259[/color][/align][/td]
+[td][align=center][abbr="chernika"][url=http://gk-molodegniy.ru/profile.php?id=1084]259[/url][/abbr] [/align][/td]
 [td][align=center][abbr="mariaL"][url=http://gk-molodegniy.ru/profile.php?id=938]260[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]261[/color][/align][/td]
 [td][align=center][abbr="марина"][url=http://gk-molodegniy.ru/profile.php?id=191]262[/url][/abbr] [/align][/td]
@@ -656,9 +656,9 @@ declare @strString_ varchar(max)=
 [td colspan=9][align=center][color=#F4FADB][/color][/align][/td]
 [/tr]
 [/table]
- 
+
 [b]Секция 3[/b]
- 
+
 
 [table layout=fixed width=360px]
 [tr]
@@ -788,7 +788,7 @@ declare @strString_ varchar(max)=
 [/tr]
 [tr]
 [td][url=http://gk-molodegniy.ru/files/0011/53/1d/28780.jpg]16[/url][/td]
-[td][align=center][color=#F4FADB]580[/color][/align][/td]
+[td][align=center][abbr="DARKNeZZ"][url=http://gk-molodegniy.ru/profile.php?id=1205]580[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]581[/color][/align][/td]
 [td][align=center][color=#F4FADB]582[/color][/align][/td]
 [td][align=center][abbr="Медианна"][url=http://gk-molodegniy.ru/profile.php?id=854]583[/url][/abbr] [/align][/td]
@@ -864,7 +864,7 @@ declare @strString_ varchar(max)=
 [td][align=center][color=#F4FADB]527[/color][/align][/td]
 [td][align=center][abbr="Olga"][url=http://gk-molodegniy.ru/profile.php?id=523]528[/url][/abbr] [/align][/td]
 [td][align=center][abbr="Олег М."][url=http://gk-molodegniy.ru/profile.php?id=623]529[/url][/abbr] [/align][/td]
-[td][align=center][color=#F4FADB]530[/color][/align][/td]
+[td][align=center][abbr="Надоело"][url=http://gk-molodegniy.ru/profile.php?id=1206]530[/url][/abbr] [/align][/td]
 [td][align=center][abbr="Николай"][url=http://gk-molodegniy.ru/profile.php?id=460]531[/url][/abbr] [/align][/td]
 [td][align=center][abbr="Юлия 83"][url=http://gk-molodegniy.ru/profile.php?id=888]532[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]533[/color][/align][/td]
@@ -917,16 +917,16 @@ declare @strString_ varchar(max)=
 [td][align=center][abbr="Margonya"][url=http://gk-molodegniy.ru/profile.php?id=257]493[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]494[/color][/align][/td]
 [td][align=center][color=#F4FADB]495[/color][/align][/td]
-[td][align=center][abbr="валера"][url=http://gk-molodegniy.ru/profile.php?id=551]496[/url][/abbr] [abbr="Чар"][url=http://gk-molodegniy.ru/profile.php?id=744]*[/url][/abbr] [/align][/td]
-[td][align=center][color=#F4FADB]497[/color][/align][/td]
+[td][align=center][abbr="валера"][url=http://gk-molodegniy.ru/profile.php?id=551]496[/url][/abbr] [/align][/td]
+[td][align=center][abbr="Чар"][url=http://gk-molodegniy.ru/profile.php?id=744]497[/url][/abbr] [/align][/td]
 [/tr]
 [tr]
 [td][url=http://gk-molodegniy.ru/files/0011/53/1d/37552.jpg]5[/url][/td]
 [td][align=center][color=#F4FADB]478[/color][/align][/td]
-[td][align=center][color=#F4FADB]479[/color][/align][/td]
+[td][align=center][abbr="Катерина"][url=http://gk-molodegniy.ru/profile.php?id=1011]479[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]480[/color][/align][/td]
 [td][align=center][color=#F4FADB]481[/color][/align][/td]
-[td][align=center][abbr="Катерина"][url=http://gk-molodegniy.ru/profile.php?id=1011]482[/url][/abbr] [/align][/td]
+[td][align=center][color=#F4FADB]482[/color][/align][/td]
 [td][align=center][color=#F4FADB]483[/color][/align][/td]
 [td][align=center][color=#F4FADB]484[/color][/align][/td]
 [td][align=center][color=#F4FADB]485[/color][/align][/td]
@@ -937,10 +937,10 @@ declare @strString_ varchar(max)=
 [td][url=http://gk-molodegniy.ru/files/0011/53/1d/37552.jpg]4[/url][/td]
 [td][align=center][color=#F4FADB]468[/color][/align][/td]
 [td][align=center][abbr="Олеся"][url=http://gk-molodegniy.ru/profile.php?id=81]469[/url][/abbr] [/align][/td]
-[td][align=center][color=#F4FADB]470[/color][/align][/td]
+[td][align=center][abbr="solnywko31"][url=http://gk-molodegniy.ru/profile.php?id=1145]470[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]471[/color][/align][/td]
 [td][align=center][abbr="T-Ira"][url=http://gk-molodegniy.ru/profile.php?id=183]472[/url][/abbr] [/align][/td]
-[td][align=center][color=#F4FADB]473[/color][/align][/td]
+[td][align=center][abbr="Борис"][url=http://gk-molodegniy.ru/profile.php?id=1227]473[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]474[/color][/align][/td]
 [td][align=center][color=#F4FADB]475[/color][/align][/td]
 [td][align=center][color=#F4FADB]476[/color][/align][/td]
@@ -957,7 +957,7 @@ declare @strString_ varchar(max)=
 [td][align=center][color=#F4FADB]464[/color][/align][/td]
 [td][align=center][color=#F4FADB]465[/color][/align][/td]
 [td][align=center][color=#F4FADB]466[/color][/align][/td]
-[td][align=center][color=#F4FADB]467[/color][/align][/td]
+[td][align=center][abbr="nurati"][url=http://gk-molodegniy.ru/profile.php?id=1235]467[/url][/abbr] [/align][/td]
 [/tr]
 [tr]
 [td][url=http://gk-molodegniy.ru/files/0011/53/1d/37552.jpg]2[/url][/td]
@@ -977,8 +977,8 @@ declare @strString_ varchar(max)=
 [td colspan=10][align=center][color=#F4FADB][/color][/align][/td]
 [/tr]
 [/table]
- 
- 
+
+
 [spoiler="Список жильцов"]33green (№ 214)
 ak75 (№ 266)
 Alem (№ 181)
@@ -1004,9 +1004,11 @@ Boshmax (№ 549)
 Bulat (№ 540)
 canecorso (№ 90)
 ceysi (№ 34)
+chernika (№ 259)
 clicke (№ 503)
 cvetok-03 (№ 650)
 Daniel (№ 569)
+DARKNeZZ (№ 580)
 Darya (№ 363)
 Deniel (№ 629)
 dikarkamol (№ 209)
@@ -1018,6 +1020,8 @@ Elepershina (№ 625)
 Ellada (№ 210)
 Feson (№ 406)
 FOX_LARISA (№ 220)
+Garik (№ 21)
+Gemchugina (№ 226)
 Good neighbours (№ 599)
 Gulfiya (№ 601)
 gulieta (№ 431)
@@ -1061,6 +1065,7 @@ Nataly (№ 119)
 Natalya (№ 626)
 nik (№ 407)
 Niko (№ 408)
+nurati (№ 467)
 Olga (№ 528)
 Panwester (№ 206)
 PATRON (№ 347)
@@ -1076,6 +1081,7 @@ Shimano (№ 277)
 silveronboard (№ 56)
 skv2001 (№ 609)
 Smile98 (№ 304)
+solnywko31 (№ 470)
 Solodalex (№ 610)
 SSKuzmich (№ 139)
 Stasss (№ 12)
@@ -1095,6 +1101,7 @@ vanchik (№ 187)
 Viktor (№ 567)
 Vileclaw (№ 550)
 Vitaliy (№ 322)
+Woiss (№ 214)
 yahellen (№ 378)
 yana (№ 104)
 Yogik (№ 415)
@@ -1104,6 +1111,7 @@ zte (№ 258)
 Алан (№ 534)
 антон (№ 513)
 Апполинария (№ 248)
+Борис (№ 473)
 Валентина (№ 169)
 валера (№ 496)
 Вераник (№ 491)
@@ -1111,12 +1119,12 @@ zte (№ 258)
 Гибискус (№ 624)
 Диана (№ 535)
 Дмитрий Иванов (№ 75)
-Екатерина (№ 64)
+Екатерина (№ 65)
 Зарик (№ 197)
 Иван (№ 612)
 Игорь (№ 174)
 Ира (№ 162)
-Катерина (№ 482)
+Катерина (№ 479)
 Лидия (№ 111)
 Лобачев Дмитрий (№ 194)
 Любовь (№ 397)
@@ -1126,6 +1134,7 @@ zte (№ 258)
 Матрешка (№ 644)
 Медианна (№ 583)
 Молодед (№ 70)
+Надоело (№ 530)
 Наталья (№ 129)
 Незабудка (№ 97)
 НЕЛЛИ (№ 234)
@@ -1136,6 +1145,7 @@ zte (№ 258)
 Олька (№ 666)
 Палыч (№ 405)
 Питон (№ 279)
+Профессор Мориарти (№ 303)
 Раис (№ 634)
 Реалист и Оптимистка (№ 137)
 Рена (№ 667)
@@ -1145,7 +1155,7 @@ zte (№ 258)
 Стас (№ 344)
 Турист (№ 350)
 Хельга (№ 589)
-Чар (№ 496)
+Чар (№ 497)
 Элина (№ 190)
 Юлия 83 (№ 532)
 Яника (№ 372)

@@ -1,7 +1,7 @@
 ﻿:r ../_sqlinc/create_func_tvf_multi.sqlinc
 
 /*
-$Date: 15.09.2014 13:40:47 $
+$Date: 27.01.2015 11:52:05 $
 $Source: Git\gk-molodegniy\Sql\fParseUserFlat.sql $
 Назначение:
 
@@ -86,8 +86,17 @@ begin
 		set @nFlat_ = cast(@szFlat_ as int)
 	--IF @szFlat_ = '*'
 	--номер остается
+	if ISNUMERIC(@szFlat_)= 1
+		set @nFlat_ = cast(@szFlat_ as int)
 	if @szFlat_ like '[aаAА]'
 		set @nFraction_ = 1
+	if @szFlat_ like '%[0-9][aаAА]' or @szFlat_ like '%[0-9] [aаAА]'
+	begin
+		set @nFraction_ = 1
+		set @szFlat_ = REPLACE (REPLACE (@szFlat_, 'A',''), 'А','')
+		if ISNUMERIC(@szFlat_)= 1
+			set @nFlat_ = cast(@szFlat_ as int)
+	end
 	if @szFlat_ like '[АA][0-9]%'
 	begin
 		set @nApartment_ = 1

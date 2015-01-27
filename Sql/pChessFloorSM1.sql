@@ -1,6 +1,6 @@
 ﻿--:r ../_sqlinc/create_proc.sqlinc
 /*
-$Date: 15.09.2014 13:26:39 $
+$Date: 27.01.2015 12:27:48 $
 $Source: Git\gk-molodegniy\Sql\pChessFloorSM1.sql $
 
 Назначение:
@@ -11,8 +11,9 @@ $Source: Git\gk-molodegniy\Sql\pChessFloorSM1.sql $
 alter procedure $(_SCHEMA).$(_OBJECT)
 	@nHouse int
 ,	@nUnit int
+
 as
-declare 
+declare
 	@nMaxFlatInFloor_ int --макимальное количество пемещений на площадке
 ,	@nStartFlat_ int	--начало нумерации в данной секции
 ,	@nStartApartment_ int --начало нумерации в данной секции
@@ -32,17 +33,17 @@ declare
 ,	@nFlatGroup_ int      --Объединение квартиры
 ,	@isApartament_ bit    --Признак апартамента
 
-declare 
+declare
 	@szUrlMap_ varchar(250)
 ,	@szFlatNum_ varchar(10)
 ,	@szText_ varchar(250)
 ,	@szColspan_ varchar(20) = ''
 ,	@szUser_ varchar(250)
-,	@nUserId_ int
+,	@nId_ int
 ,	@abbr_ varchar(5)
 /*
 
-declare 
+declare
 	@nRealFlatInFloor_ int
 ,	@nRealApartmentInFloor_ int
 ,	@nApartmentId_ int
@@ -99,7 +100,7 @@ set @nFloorsId_ = @nFloors_
 while @nFloorsId_ > 0
 begin
 	print '[tr]'
-	
+
 	--количество квартир до этой площадки в данной секции
 	select @nUnitFlat_ = isnull(sum(FlatInFloor), 0)
 	,	@nUnitApartment_ = isnull(sum(ApartmentInFloor), 0)
@@ -112,7 +113,7 @@ begin
 	,	@szUrlMap_ = UrlMap
 	from dbo.tFloor
 	where HouseId = @nHouse and Unit = @nUnit and FloorNum = @nFloorsId_
-	
+
 	--построение столбца таблицы с порядковыми номерами
 	if @szUrlMap_ <> ''
 		print '[td][url='+isnull(@szUrlMap_,'')+']' + isnull(cast(@nFloorsId_ as varchar(20)),'')+ '[/url][/td]'
@@ -123,7 +124,7 @@ begin
 	select @nApartmentId_ = @nStartApartment_	+ @nUnitApartment_
 
 	--Внутриэтажный цикл
-	set @nFlatInFloorId_ = 1	
+	set @nFlatInFloorId_ = 1
 	while @nFlatInFloorId_ <= @nMaxFlatInFloor_
 	begin
 		set @isApartament_ = 0
@@ -135,33 +136,33 @@ begin
 		from dbo.tFlatDetail where Houseid = @nHouse and Unit = @nUnit and [Floor] = @nFloorsId_ and FlatInFloor = @nFlatInFloorId_
 
 		if @isApartament_ = 1
-		begin 
+		begin
 			set @nApartmentId_ = @nApartmentId_ + 1
 			set @szFlatNum_ = 'A'+ cast(@nApartmentId_ as varchar(10))
 		end
 		else
-		begin 
+		begin
 			set @nFlatId_ = @nFlatId_ + 1
 			set @szFlatNum_ = @nFlatId_
 		end
 
 		if @nFlatGroup_ > 1
-		begin 
+		begin
 			set @szColspan_ = ' colspan='+cast(@nFlatGroup_ as varchar(10))+''
 			set @nFlatInFloorId_ = @nFlatInFloorId_ + @nFlatGroup_ - 1
 		end
 
 		if @nFloorsId_ = 1
-		begin 
+		begin
 			set @szFlatNum_ = ''
 		end
 
-		if exists(select 1 from dbo.tUser 
+		if exists(select 1 from dbo.tUser
 				where HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
 				and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
 			)
 		begin
-			set @nUserId_ = 0
+			set @nId_ = 0
 			set @szUser_ = ''
 			if @isApartament_ = 1
 				set @abbr_ = 'A'+ cast(@nApartmentId_ as varchar(20))
@@ -169,42 +170,46 @@ begin
 				set @abbr_ = cast(@nFlatId_ as varchar(20))
 			while 1 = 1
 			begin
-				select top 1 @nUserId_ = Id 
-				from dbo.tUser 
-				where Id > @nUserId_ and HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
+				select top 1 @nId_ = Id
+				from dbo.tUser
+				where Id > @nId_ and HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
 				and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
-				--and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0 
+				--and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0
 				order by Id
 					if @@rowcount = 0
 						break
 
 				select @szUser_ = @szUser_ +
 						case when UserId is not null
-							then '[abbr="'+Name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(UserId as varchar(20))+']'+@abbr_+'[/url][/abbr] '
-						else '[abbr="'+Name+'"]'+@abbr_+'[/abbr] '
+							then '[abbr="'+Name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(UserId as varchar(20))+']'+
+							case Fraction when 1 then replace(@abbr_, ' *', '') + ' а' else @abbr_ end
+							+'[/url][/abbr] '
+						else '[abbr="'+Name+'"]'+case Fraction when 1 then replace(@abbr_, ' *', '') + ' а' else @abbr_ end+'[/abbr] '
 						end
 				from dbo.tUser
-				where Id = @nUserId_ 
+				where Id = @nId_
 
 				set @abbr_ = ' *'
 			end
 			print '[td'+ @szColspan_ + '][align=center]' + @szUser_ + '[/align][/td]'
+			set @szUser_ = ''
 		end
 		else
 		begin
 			print '[td'+ @szColspan_ + '][align=center][color=#F4FADB]' + @szFlatNum_+ '[/color][/align][/td]'
+			set @szFlatNum_ = ''
 		end
 
-/*			
+/*
 
 
 
 
 		if @nRealFlatInFloor_ >= @nFlatInFloorId_
 		begin
-			select * from dbo.tFlatDetail where Houseid = @nHouse and [Floor] = @nFloorsId_ and 
-		
-		
+			select * from dbo.tFlatDetail where Houseid = @nHouse and [Floor] = @nFloorsId_ and
+
+
 
 			if exists(select 1 from dbo.tUser where Flat = @nFlatId_ and Houseid = @nHouse and IsDisable = 0  and Apartment = 0)
 			begin
@@ -251,7 +256,7 @@ begin
 			end
 			else
 			*/
-				
+
 				/*
 		end
 		else

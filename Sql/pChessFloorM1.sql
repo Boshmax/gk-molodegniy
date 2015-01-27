@@ -16,7 +16,6 @@ print ''
 exec pChessFloorSM1
 	@nHouse = 1
 ,	@nUnit = 1
-,	@bitStr = 0
 print ''
 exec pListTenant
 	@nHouse = 1
