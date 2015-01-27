@@ -1,5 +1,5 @@
 ﻿/*
-$Date: 14.10.2014 18:55:52 $
+$Date: 27.01.2015 13:06:05 $
 $Source: Git\gk-molodegniy\Init\tHouse.sql $
 
 Назначение:
@@ -35,3 +35,5 @@ union all
 select 2, 3, 25, 9, 0
 union all
 select 3, 3, 25, 9, 0
+union all
+select 4, 4, 25, 11, 0

@@ -1,6 +1,6 @@
 ﻿--:r ../_sqlinc/create_proc.sqlinc
 /*
-$Date: 27.01.2015 12:27:48 $
+$Date: 27.01.2015 12:59:25 $
 $Source: Git\gk-molodegniy\Sql\pChessFloorSM1.sql $
 
 Назначение:
@@ -155,49 +155,53 @@ begin
 		if @nFloorsId_ = 1
 		begin
 			set @szFlatNum_ = ''
-		end
-
-		if exists(select 1 from dbo.tUser
-				where HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
-				and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
-			)
-		begin
-			set @nId_ = 0
 			set @szUser_ = ''
-			if @isApartament_ = 1
-				set @abbr_ = 'A'+ cast(@nApartmentId_ as varchar(20))
-			else
-				set @abbr_ = cast(@nFlatId_ as varchar(20))
-			while 1 = 1
-			begin
-				select top 1 @nId_ = Id
-				from dbo.tUser
-				where Id > @nId_ and HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
-				and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
-				--and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0
-				order by Id
-					if @@rowcount = 0
-						break
-
-				select @szUser_ = @szUser_ +
-						case when UserId is not null
-							then '[abbr="'+Name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(UserId as varchar(20))+']'+
-							case Fraction when 1 then replace(@abbr_, ' *', '') + ' а' else @abbr_ end
-							+'[/url][/abbr] '
-						else '[abbr="'+Name+'"]'+case Fraction when 1 then replace(@abbr_, ' *', '') + ' а' else @abbr_ end+'[/abbr] '
-						end
-				from dbo.tUser
-				where Id = @nId_
-
-				set @abbr_ = ' *'
-			end
 			print '[td'+ @szColspan_ + '][align=center]' + @szUser_ + '[/align][/td]'
-			set @szUser_ = ''
 		end
 		else
 		begin
-			print '[td'+ @szColspan_ + '][align=center][color=#F4FADB]' + @szFlatNum_+ '[/color][/align][/td]'
-			set @szFlatNum_ = ''
+			if exists(select 1 from dbo.tUser
+					where HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
+					and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
+				)
+			begin
+				set @nId_ = 0
+				set @szUser_ = ''
+				if @isApartament_ = 1
+					set @abbr_ = 'A'+ cast(@nApartmentId_ as varchar(20))
+				else
+					set @abbr_ = cast(@nFlatId_ as varchar(20))
+				while 1 = 1
+				begin
+					select top 1 @nId_ = Id
+					from dbo.tUser
+					where Id > @nId_ and HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
+					and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
+					--and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0
+					order by Id
+						if @@rowcount = 0
+							break
+
+					select @szUser_ = @szUser_ +
+							case when UserId is not null
+								then '[abbr="'+Name+'"][url=http://gk-molodegniy.ru/profile.php?id='+cast(UserId as varchar(20))+']'+
+								case Fraction when 1 then replace(@abbr_, ' *', '') + ' а' else @abbr_ end
+								+'[/url][/abbr] '
+							else '[abbr="'+Name+'"]'+case Fraction when 1 then replace(@abbr_, ' *', '') + ' а' else @abbr_ end+'[/abbr] '
+							end
+					from dbo.tUser
+					where Id = @nId_
+
+					set @abbr_ = ' *'
+				end
+				print '[td'+ @szColspan_ + '][align=center]' + @szUser_ + '[/align][/td]'
+				set @szUser_ = ''
+			end
+			else
+			begin
+				print '[td'+ @szColspan_ + '][align=center][color=#F4FADB]' + @szFlatNum_+ '[/color][/align][/td]'
+				set @szFlatNum_ = ''
+			end
 		end
 
 /*

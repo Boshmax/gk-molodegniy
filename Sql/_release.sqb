@@ -1,4 +1,4 @@
-﻿; $Date: 2010/02/02 10:38:17 $
+﻿; $Date: 27.01.2015 13:41:47 $
 ; _server.bat
 
 $call ../_schemas.bat
@@ -26,4 +26,6 @@ pListTenant.sql
 pChessFloorM1.sql
 pChessFloorM2.sql
 pChessFloorM3.sql
+pChessFloorM4.sql
+pChessFloorM4_2.sql
 
