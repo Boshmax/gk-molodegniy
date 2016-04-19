@@ -1,5 +1,5 @@
 ﻿/*
-$Date: 27.01.2015 12:55:59 $
+$Date: 18.04.2016 17:45:13 $
 $Source: Git\gk-molodegniy\Data\init_House1.sql $
 
 Назначение:
@@ -118,7 +118,7 @@ declare @strString_ nvarchar(max)=
 [td][align=center][abbr="Петр"][url=http://gk-molodegniy.ru/profile.php?id=567]154[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]155[/color][/align][/td]
 [td][align=center][color=#F4FADB]156[/color][/align][/td]
-[td][align=center][color=#F4FADB]157[/color][/align][/td]
+[td][align=center][abbr="shabilla"][url=http://gk-molodegniy.ru/profile.php?id=1674]157[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]158[/color][/align][/td]
 [td][align=center][color=#F4FADB]159[/color][/align][/td]
 [td][align=center][color=#F4FADB]160[/color][/align][/td]

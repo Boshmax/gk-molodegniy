@@ -1,6 +1,6 @@
 @echo off
 rem $Name: wirth-test\www | HOME-PC\HOMESERVER$
-rem rem $Date: 2009/12/08 13:02:14 $
+rem rem $Date: 13.10.2014 18:41:53 $
 
-set dbserver=HOME-PC\HOMESERVER
+set dbserver=wirth-test\www
 set dbname=gkm
