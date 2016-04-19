@@ -1,6 +1,6 @@
 ﻿--:r ../_sqlinc/create_proc.sqlinc
 /*
-$Date: 27.01.2015 12:59:25 $
+$Date: 19.04.2016 13:51:27 $
 $Source: Git\gk-molodegniy\Sql\pChessFloorSM1.sql $
 
 Назначение:
@@ -59,8 +59,8 @@ declare @nApartmentInFloorId_ int = 1
 */
 
 --начало нумерации в данной секции
-select @nStartFlat_ = isnull(sum(FlatInFloor), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
-select @nStartApartment_ = isnull(sum(ApartmentInFloor), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
+select @nStartFlat_ = isnull(sum(isnull(FlatInFloor, 0)), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
+select @nStartApartment_ = isnull(sum(isnull(ApartmentInFloor, 0)), 0) from dbo.tFloor where HouseId = @nHouse and Unit < @nUnit
 
 select @nStartApartment_ = @nStartApartment_  + StartApartamentNum - 1
 from dbo.tHouse where Id = @nHouse
@@ -70,7 +70,7 @@ select @nFloors_ = Floors
 from dbo.tHouse where House = @nHouse
 
 --получаем максимальное колличество помещений на площадке
-select @nMaxFlatInFloor_ =  max(FlatInFloor + ApartmentInFloor)
+select @nMaxFlatInFloor_ =  max(isnull(FlatInFloor, 0) + isnull(ApartmentInFloor, 0))
 from dbo.tFloor where HouseId = @nHouse and Unit = @nUnit
 
 
@@ -102,8 +102,8 @@ begin
 	print '[tr]'
 
 	--количество квартир до этой площадки в данной секции
-	select @nUnitFlat_ = isnull(sum(FlatInFloor), 0)
-	,	@nUnitApartment_ = isnull(sum(ApartmentInFloor), 0)
+	select @nUnitFlat_ = isnull(sum(isnull(FlatInFloor, 0)), 0)
+	,	@nUnitApartment_ = isnull(sum(isnull(ApartmentInFloor, 0)), 0)
 	from dbo.tFloor
 	where HouseId = @nHouse and Unit = @nUnit and FloorNum < @nFloorsId_
 
@@ -138,7 +138,10 @@ begin
 		if @isApartament_ = 1
 		begin
 			set @nApartmentId_ = @nApartmentId_ + 1
-			set @szFlatNum_ = 'A'+ cast(@nApartmentId_ as varchar(10))
+			if @nHouse = 1
+				set @szFlatNum_ = 'A'+ cast(@nApartmentId_ as varchar(10))
+			else
+				set @szFlatNum_ = 'A'+ cast(@nFlatId_ as varchar(10))
 		end
 		else
 		begin
@@ -162,13 +165,21 @@ begin
 		begin
 			if exists(select 1 from dbo.tUser
 					where HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
-					and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
+					and ((@isApartament_ = 1 and Flat = @nApartmentId_ and @nHouse = 1) or (@isApartament_ = 0 and Flat = @nFlatId_)
+						or (@isApartament_ = 1 and Flat = @nFlatId_ and @nHouse = 3))
 				)
 			begin
 				set @nId_ = 0
 				set @szUser_ = ''
 				if @isApartament_ = 1
-					set @abbr_ = 'A'+ cast(@nApartmentId_ as varchar(20))
+					if @nHouse = 1
+					begin
+						set @abbr_ = 'A'+ cast(@nApartmentId_ as varchar(20))
+					end
+					else
+					begin
+						set @abbr_ = 'A'+ cast(@nFlatId_ as varchar(20))
+					end
 				else
 					set @abbr_ = cast(@nFlatId_ as varchar(20))
 				while 1 = 1
@@ -176,7 +187,8 @@ begin
 					select top 1 @nId_ = Id
 					from dbo.tUser
 					where Id > @nId_ and HouseId = @nHouse  and IsDisable = 0 and Apartment = @isApartament_
-					and ((@isApartament_ = 1 and Flat = @nApartmentId_) or (@isApartament_ = 0 and Flat = @nFlatId_))
+					and ((@isApartament_ = 1 and Flat = @nApartmentId_ and @nHouse = 1) or (@isApartament_ = 0 and Flat = @nFlatId_)
+						or (@isApartament_ = 1 and Flat = @nFlatId_ and @nHouse = 3))
 					--and ((Fraction = 0 and @bitStr = 1) or (Fraction in(0, 1) and @bitStr = 0)) and Apartment = 0
 					order by Id
 						if @@rowcount = 0
