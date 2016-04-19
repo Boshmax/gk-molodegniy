@@ -1,5 +1,5 @@
 ﻿/*
-$Date: 18.04.2016 17:51:38 $
+$Date: 19.04.2016 12:35:56 $
 $Source: Git\gk-molodegniy\Init\tFloor.sql $
 
 Назначение:
@@ -135,30 +135,30 @@ union	all	select		25, 2, 3, 9, 'http://gk-molodegniy.ru/files/0011/53/1d/28780.j
 union	all	select		 1, 3, 1, 0, null, 0, null
 union	all	select		 1, 3, 2, 0, null, 0, null
 union	all	select		 1, 3, 3, 0, null, 0, null
-union	all	select		 2, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		 3, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		 4, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		 5, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		 6, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		 7, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		 8, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		 9, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		10, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		11, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		12, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		13, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		14, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		15, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		16, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		17, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		18, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		19, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		20, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		21, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		22, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		23, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		24, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
-union	all	select		25, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 11
+union	all	select		 2, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		 3, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		 4, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		 5, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		 6, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		 7, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		 8, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		 9, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		10, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		11, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		12, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		13, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		14, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		15, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		16, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		17, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		18, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		19, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		20, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		21, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		22, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		23, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		24, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
+union	all	select		25, 3, 1, 9, 'http://www.incom.ru/images/object_images/1144010/600x518/00114b91-7dd1-40d7-87e0-7cb0745e9fd0.jpg',	1, 10
 union	all	select		 2, 3, 2, 9, 'http://www.incom.ru/images/object_images/1144010/600x495/0066cac1-00a0-4d50-8606-42e277b6fdba.jpg',	1, 9
 union	all	select		 3, 3, 2, 9, 'http://www.incom.ru/images/object_images/1144010/600x495/0066cac1-00a0-4d50-8606-42e277b6fdba.jpg',	1, 9
 union	all	select		 4, 3, 2, 9, 'http://www.incom.ru/images/object_images/1144010/600x495/0066cac1-00a0-4d50-8606-42e277b6fdba.jpg',	1, 9
@@ -319,3 +319,7 @@ union	all	select		25, 4, 4, 11, 'http://newton-realty.ru/data/catalog_gallery/im
 update dbo.tFloor
 set ApartmentInFloor = 3
 where HouseId = 1 and FloorNum in (2, 3)
+
+update dbo.tFloor
+set ApartmentInFloor = 1
+where HouseId = 3 and FloorNum >= 2 and Unit = 1

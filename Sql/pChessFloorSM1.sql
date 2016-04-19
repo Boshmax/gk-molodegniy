@@ -120,8 +120,8 @@ begin
 	else
 		print '[td]'+isnull(cast(@nFloorsId_ as varchar(20)),'')+ '[/td]'
 
-	select @nFlatId_ = @nStartFlat_	+ @nUnitFlat_
-	select @nApartmentId_ = @nStartApartment_	+ @nUnitApartment_
+	select @nFlatId_ = @nStartFlat_ + @nUnitFlat_
+	select @nApartmentId_ = @nStartApartment_ + @nUnitApartment_
 
 	--Внутриэтажный цикл
 	set @nFlatInFloorId_ = 1
