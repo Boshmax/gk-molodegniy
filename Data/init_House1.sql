@@ -11,7 +11,7 @@ $Source: Git\gk-molodegniy\Data\init_House1.sql $
 */
 declare @strString_ nvarchar(max)=
 '[b]Молодежный I[/b]
-
+ 
 
 [table layout=fixed width=426px]
 [tr]
@@ -205,7 +205,7 @@ declare @strString_ nvarchar(max)=
 [td][align=center][color=#F4FADB]79[/color][/align][/td]
 [td][align=center][abbr="XAHCEP"][url=http://gk-molodegniy.ru/profile.php?id=39]80[/url][/abbr] [/align][/td]
 [td][align=center][abbr="Ирэн"][url=http://gk-molodegniy.ru/profile.php?id=4]81[/url][/abbr] [/align][/td]
-[td][align=center][color=#F4FADB]82[/color][/align][/td]
+[td][align=center][abbr="Lelja"][url=http://gk-molodegniy.ru/profile.php?id=2172]82[/url][/abbr] [/align][/td]
 [td][align=center][color=#F4FADB]83[/color][/align][/td]
 [td][align=center][color=#F4FADB]84[/color][/align][/td]
 [td][align=center][color=#F4FADB]85[/color][/align][/td]
