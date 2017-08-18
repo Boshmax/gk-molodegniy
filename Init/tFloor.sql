@@ -217,7 +217,7 @@ union	all	select		 1, 4, 2, 0, null, 0, null
 union	all	select		 1, 4, 3, 0, null, 0, null
 union	all	select		 1, 4, 4, 0, null, 0, null
 union	all	select		 2, 4, 1, 0, null, 0, null
-union	all	select		 3, 4, 1, 11, 'http://newton-realty.ru/data/catalog_gallery/image_1/big_m4_sektsiya_1_chet.jpg', 1, null
+union	all	select		 3, 4, 1, 9, 'http://newton-realty.ru/data/catalog_gallery/image_1/big_m4_sektsiya_1_chet.jpg', 1, null
 union	all	select		 4, 4, 1, 11, 'http://newton-realty.ru/data/catalog_gallery/image_1/big_m4_sektsiya_1_chet.jpg', 1, null
 union	all	select		 5, 4, 1, 11, 'http://newton-realty.ru/data/catalog_gallery/image_1/big_m4_sektsiya_1_nechet.jpg', 1, null
 union	all	select		 6, 4, 1, 11, 'http://newton-realty.ru/data/catalog_gallery/image_1/big_m4_sektsiya_1_nechet.jpg', 1, null
@@ -323,3 +323,7 @@ where HouseId = 1 and FloorNum in (2, 3)
 update dbo.tFloor
 set ApartmentInFloor = 1
 where HouseId = 3 and FloorNum >= 2 and Unit = 1
+
+update dbo.tFloor
+set ApartmentInFloor = 1
+where HouseId = 4 and FloorNum = 3 and Unit = 1

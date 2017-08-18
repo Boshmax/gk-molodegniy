@@ -228,6 +228,8 @@ select 4, 1, 1, 1, 11, 0
 union all
 select 4, 1, 2, 1, 11, 0
 union all
+select 4, 1, 3, 5, 2, 1
+union all
 select 4, 2, 1, 1, 10, 0
 union all
 select 4, 3, 1, 1, 10, 0
